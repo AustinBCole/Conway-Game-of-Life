@@ -22,9 +22,6 @@ class GridView: UIView {
                     let cell = UIView(frame: CGRect(x: x, y: y, width: 10, height: 10))
                     cell.backgroundColor = .green
                     self.addSubview(cell)
-                        
-                    
-                    
                 }
                 // Else if we are still on the first row of cells
                 else if y == 0 {
@@ -50,6 +47,7 @@ class GridView: UIView {
                     self.addSubview(cell)
                     
                 }
+                print(x, y)
             }
         }
     }
