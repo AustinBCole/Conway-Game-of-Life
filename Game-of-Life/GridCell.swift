@@ -33,14 +33,6 @@ class GridCell: UIView {
     }
     
     // MARK: Private methods
-    public func changeState() {
-        if currentState == 0 {
-            self.backgroundColor = .black
-        }
-        else {
-            self.backgroundColor = .white
-        }
-    }
     
     // MARK: Public Methods
     public func toggleState() {
@@ -61,4 +53,11 @@ class GridCell: UIView {
         }
     }
     
+    public func getIndex() -> (Int, Int) {
+        return index
+    }
+    
+    public func getState() -> Int {
+        return currentState
+    }
 }
