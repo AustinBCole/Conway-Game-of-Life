@@ -21,8 +21,10 @@ class GridCell: UIView {
             }
         }
     }
+    private let index: (Int, Int)
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, index: (Int, Int)) {
+        self.index = index
         super.init(frame: frame)
     }
     

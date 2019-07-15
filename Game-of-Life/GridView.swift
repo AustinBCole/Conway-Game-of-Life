@@ -19,14 +19,14 @@ class GridView: UIView {
                 // If this is the first cell we are making
                 if y == 0 && x == 0 {
                     // Then put in x and y without modification so that we have a cell in the top left corner
-                    let cell = GridCell(frame: CGRect(x: x, y: y, width: 10, height: 10))
+                    let cell = GridCell(frame: CGRect(x: x, y: y, width: 10, height: 10), index: (x, y))
                     cell.backgroundColor = .green
                     self.addSubview(cell)
                 }
                 // Else if we are still on the first row of cells
                 else if y == 0 {
                     // We don't modify y, but we multiply x by 10.
-                    let cell = GridCell(frame: CGRect(x: x * 10, y: y, width: 10, height: 10))
+                    let cell = GridCell(frame: CGRect(x: x * 10, y: y, width: 10, height: 10), index: (x, y))
                     cell.backgroundColor = .blue
                     self.addSubview(cell)
 
@@ -34,7 +34,7 @@ class GridView: UIView {
                 // Else in the case that we are on the first column of cells
                 else if x == 0 {
                     // We don't modify x, but we multiply y by 10
-                    let cell = GridCell(frame: CGRect(x: x, y: y * 10, width: 10, height: 10))
+                    let cell = GridCell(frame: CGRect(x: x, y: y * 10, width: 10, height: 10), index: (x, y))
                     cell.backgroundColor = .red
                     self.addSubview(cell)
 
@@ -42,12 +42,11 @@ class GridView: UIView {
                 // Else
                 else {
                     //Multiply x by 10 and y by 10
-                    let cell = GridCell(frame: CGRect(x: x * 10, y: y * 10, width: 10, height: 10))
+                    let cell = GridCell(frame: CGRect(x: x * 10, y: y * 10, width: 10, height: 10), index: (x, y))
                     cell.backgroundColor = .black
                     self.addSubview(cell)
                     
                 }
-                print(x, y)
             }
         }
     }
