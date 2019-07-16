@@ -13,17 +13,15 @@ class CellAutomaton {
     //MARK: Private Properties
     private let gridCellGraph = GridCellGraph.shared
     private var isRunning = false
-    private var grid
     
     
     //MARK: Public Methods
     public func cellAutomaton() {
         let gridCellArray = gridCellGraph.getGridCellArray()
-        while self.isRunning == true {
-            for cell in gridCellArray {
-                
+        for cell in gridCellArray {
+            if cellShouldChangeState(cell: cell) {
+                cell.toggleState()
             }
-            
         }
     }
     public func toggleCellAutomaton() {
@@ -51,5 +49,27 @@ class CellAutomaton {
     }
     private func checkStateOfCell(cell: GridCell) -> Int {
         return cell.getState()
+    }
+    private func cellShouldChangeState(cell: GridCell) -> Bool {
+        // Get state of all neighbors
+        let neighborsState = getStateOfNeighbors(cell: cell)
+        // If the cell is currently dead
+        if cell.getState() == 0 {
+            // And if neighbor state array has 3 elements
+            if neighborsState.count == 3 {
+                // Return true
+                return true
+            }
+        }
+        // Else if cell is alive
+        else if cell.getState() == 1 {
+            // And array has either 2 OR 3 elements
+            if neighborsState.count == 2 || neighborsState.count == 3 {
+                // Return true
+                return true
+            }
+        }
+        // Base case is return false
+        return false
     }
 }

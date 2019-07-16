@@ -73,11 +73,11 @@
 				A2B022C322DD27E200CFDBF2 /* GridCell.swift */,
 				A2B022CF22DE5B2E00CFDBF2 /* CellAutomaton.swift */,
 				A2B022C722DD310600CFDBF2 /* GridCellGraph.swift */,
-				A2B022CB22DE2A6E00CFDBF2 /* GenerationController.swift */,
 				A2B022C922DD379A00CFDBF2 /* IndexTuple.swift */,
 				A2B022B622DD186800CFDBF2 /* Assets.xcassets */,
 				A2B022B822DD186800CFDBF2 /* LaunchScreen.storyboard */,
 				A2B022BB22DD186800CFDBF2 /* Info.plist */,
+				A2B022CB22DE2A6E00CFDBF2 /* GenerationController.swift */,
 			);
 			path = "Game-of-Life";
 			sourceTree = "<group>";
