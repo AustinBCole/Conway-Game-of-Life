@@ -60,6 +60,12 @@ class GridCell: UIView {
     public func getState() -> Int {
         return currentState
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        toggleState()
+        
+    }
 }
 
 
