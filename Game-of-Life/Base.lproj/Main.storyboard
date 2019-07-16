@@ -38,14 +38,23 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-Hi-4W4">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
                                         <state key="normal" title="Play"/>
+                                        <connections>
+                                            <action selector="playButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="AG0-bR-FQS"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoY-7h-snj">
                                         <rect key="frame" x="123" y="0.0" width="42" height="30"/>
                                         <state key="normal" title="Pause"/>
+                                        <connections>
+                                            <action selector="pauseButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="JwG-WU-keS"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSp-Ay-zQC">
                                         <rect key="frame" x="246" y="0.0" width="42" height="30"/>
                                         <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="stopButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="CDE-oM-gKH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -63,6 +72,10 @@
                     </view>
                     <connections>
                         <outlet property="generationNumberLabel" destination="TWa-w9-NuG" id="MoY-6o-vxw"/>
+                        <outlet property="gridView" destination="nXQ-La-xLl" id="HJv-Gc-Vmh"/>
+                        <outlet property="pauseButton" destination="CoY-7h-snj" id="llO-1i-DUN"/>
+                        <outlet property="playButton" destination="LTn-Hi-4W4" id="o8z-v4-r68"/>
+                        <outlet property="stopButton" destination="sSp-Ay-zQC" id="bIZ-q6-X3e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4y-aw-1Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,14 +10,24 @@ import UIKit
 
 class GameOfLifeViewController: UIViewController {
     @IBOutlet weak var generationNumberLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var gridView: GridView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    @IBAction func playButtonWasTapped(_ sender: Any) {
+    }
     
-
+    @IBAction func pauseButtonWasTapped(_ sender: Any) {
+    }
+    
+    @IBAction func stopButtonWasTapped(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 
