@@ -13,27 +13,63 @@ class GridCellGraph {
     static let shared = GridCellGraph()
     private init() {}
     // MARK: Private Properties
-    private var gridCellAdjacencyList: [IndexTuple: [GridCell]] = [:]
+    private var gridCellAdjacencyList: [IndexTuple: [IndexTuple]] = [:]
     private var gridCellDictionary: [IndexTuple: GridCell] = [:]
-    private var gridCellArray: [GridCell] = []
     // MARK: Public Properties
     // MARK: Private Methods
-    private func getAdjacentCells(index:
-        (Int, Int)) -> [GridCell]? {
-        return nil
+    private func getAdjacentIndexTuples(index:
+        IndexTuple) -> [IndexTuple] {
+        // Get all the neighbors
+        let topLeftIndexTuple = IndexTuple(x: index.x - 1, y: index.y - 1)
+        let topIndexTuple = IndexTuple(x: index.x, y: index.y - 1)
+        let topRightIndexTuple = IndexTuple(x: index.x + 1, y: index.y - 1)
+        let rightIndexTuple = IndexTuple(x: index.x + 1, y: index.y)
+        let bottomRightIndexTuple = IndexTuple(x: index.x + 1, y: index.y + 1)
+        let bottomIndexTuple = IndexTuple(x: index.x, y: index.y + 1)
+        let bottomLeftIndexTuple = IndexTuple(x: index.x - 1, y: index.y + 1)
+        let leftIndexTuple = IndexTuple(x: index.x - 1, y: index.y)
+        // Add all neighbors to the array
+        var indexTupleArray = [topLeftIndexTuple, topIndexTuple, topRightIndexTuple, rightIndexTuple, bottomRightIndexTuple, bottomIndexTuple, bottomLeftIndexTuple, leftIndexTuple]
+        // Go through the array and remove all neighbors that don't actually exist, or all neighbors with a negative x or y
+        for tupleIndex in 0...indexTupleArray.count {
+            if indexTupleArray[tupleIndex].x < 0 || indexTupleArray[tupleIndex].y < 0 {
+                indexTupleArray.remove(at: tupleIndex)
+            }
+        }
+        // Return the array
+        return indexTupleArray
     }
     // MARK: Public Methods
     public func addCellToGraph(cell: GridCell) {
-        // Add gridcell to adjacency list, gridcell index is key and array of adjacent cells is value
+        // Get cell index
         let index = cell.getIndex()
-        gridCellAdjacencyList[index] = []
-        gridCellArray.append(cell)
+        // Cell index is key, all adjacent indexes are value
+        gridCellAdjacencyList[index] = getAdjacentIndexTuples(index: index)
+        // Store the index into the other dictionary as key, the cell as value
+        gridCellDictionary[index] = cell
         
     }
-    public func populateAdjacencyList() {
-        for cell in gridCellArray {
-            
-        }
-    }
-    
 }
+
+
+// A plan to implement this without needing to have a cell object, just drwaw every time
+// Get center index ex. (4, 4)
+// Subtract 5 and add 5 to each to get the full cell
+// Store center point in adjacency list
+// Algo for adjacency list
+// Store the x and y values of index tuple into x and y properties
+// I am incrementing and decrementing by 11 instead of 1 because I am starting at the center point of the cell. If each cell were only one point it would be 1
+// topLeft = (x - 11, y - 11)
+// top = (x, y - 11)
+// topRight = (x + 11, y - 11)
+// right = (x + 11, y)
+// bottomRight = (x + 11, y + 11)
+// bottom = (x, y + 11)
+// bottomLeft = (x - 11, y + 11)
+// properties to adjacency list, using key
+
+// Another idea for algo to populate adjacency list
+// in GetAdjacentIndexTuples
+// Just create 8 IndexTuple instances holding the values of the given IndexTuple instances neighbors
+// If any of the IndexTuples contains negative numbers, don't add them to the return array
+// Else, add them to the return array
