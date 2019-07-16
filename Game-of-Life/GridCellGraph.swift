@@ -56,11 +56,9 @@ class GridCellGraph {
         // Create empty array for cells
         var cellAdjacencyList: [GridCell] = []
         // For tuple index in adjacency list
-        print(gridCellDictionary)
         for index in adjacencyList {
             // Append grid cell to array if index x and y are both greater than zero(else it's an invalid index), get grid cell from grid cell dictionary using tuple index as key
             if index.x >= 0 && index.y >= 0 && index.x <= 30 && index.y <= 30 {
-                print(index)
                     cellAdjacencyList.append(gridCellDictionary[index]!)
             }
         }
