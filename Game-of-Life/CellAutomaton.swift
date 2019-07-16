@@ -13,6 +13,6 @@ class CellAutomaton {
     let gridCellGraph = GridCellGraph.shared
     
     func getStateOfNeighbors(cell: GridCell) {
-        gridCellGraph.
+        let adjacencyList = gridCellGraph.getAdjacentIndexTuples(cell: cell)
     }
 }

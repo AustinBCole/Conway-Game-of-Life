@@ -49,7 +49,7 @@ class GridCellGraph {
         gridCellDictionary[index] = cell
         
     }
-    public func getAdjacentIndexTuples(cell: GridCell) {
+    public func getAdjacentIndexTuples(cell: GridCell) -> [GridCell] {
         // Get adjacency list of IndexTuple
         let adjacencyList = getAdjacentIndexTuples(index: cell.getIndex())
         // Create empty array for cells
@@ -59,6 +59,7 @@ class GridCellGraph {
             // Append grid cell to array, get grid cell from grid cell dictionary using tuple index as key
                 cellAdjacencyList.append(gridCellDictionary[index]!)
         }
+        return cellAdjacencyList
     }
 }
 
