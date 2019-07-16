@@ -9,13 +9,10 @@
 import Foundation
 
 class GridCellGraph {
-    // MARK: Singleton
-    static let shared = GridCellGraph()
-    private init() {}
     // MARK: Private Properties
     private var gridCellAdjacencyList: [IndexTuple: [IndexTuple]] = [:]
     private var gridCellDictionary: [IndexTuple: GridCell] = [:]
-    // MARK: Public Properties
+    private var gridCellArray: [GridCell] = []
     // MARK: Private Methods
     private func getAdjacentIndexTuples(index:
         IndexTuple) -> [IndexTuple] {
@@ -30,10 +27,12 @@ class GridCellGraph {
         let leftIndexTuple = IndexTuple(x: index.x - 1, y: index.y)
         // Add all neighbors to the array
         var indexTupleArray = [topLeftIndexTuple, topIndexTuple, topRightIndexTuple, rightIndexTuple, bottomRightIndexTuple, bottomIndexTuple, bottomLeftIndexTuple, leftIndexTuple]
+        // Declare empty array that I will return
+        var newIndexTupleArray: [IndexTuple] = []
         // Go through the array and remove all neighbors that don't actually exist, or all neighbors with a negative x or y
-        for tupleIndex in 0...indexTupleArray.count {
-            if indexTupleArray[tupleIndex].x < 0 || indexTupleArray[tupleIndex].y < 0 {
-                indexTupleArray.remove(at: tupleIndex)
+        for tupleIndex in 0...indexTupleArray.count - 1 {
+            if indexTupleArray[tupleIndex].x > 0 || indexTupleArray[tupleIndex].y > 0 {
+                newIndexTupleArray.append(indexTupleArray[tupleIndex])
             }
         }
         // Return the array
@@ -47,7 +46,28 @@ class GridCellGraph {
         gridCellAdjacencyList[index] = getAdjacentIndexTuples(index: index)
         // Store the index into the other dictionary as key, the cell as value
         gridCellDictionary[index] = cell
+        // Append cell to gridCellArray for use in the CellAutomaton file
+        gridCellArray.append(cell)
         
+    }
+    public func getAdjacentIndexTuples(cell: GridCell) -> [GridCell] {
+        // Get adjacency list of IndexTuple
+        let adjacencyList = getAdjacentIndexTuples(index: cell.getIndex())
+        // Create empty array for cells
+        var cellAdjacencyList: [GridCell] = []
+        // For tuple index in adjacency list
+        print(gridCellDictionary)
+        for index in adjacencyList {
+            // Append grid cell to array if index x and y are both greater than zero(else it's an invalid index), get grid cell from grid cell dictionary using tuple index as key
+            if index.x >= 0 && index.y >= 0 && index.x <= 30 && index.y <= 30 {
+                print(index)
+                    cellAdjacencyList.append(gridCellDictionary[index]!)
+            }
+        }
+        return cellAdjacencyList
+    }
+    public func getGridCellArray() -> [GridCell] {
+        return gridCellArray
     }
 }
 

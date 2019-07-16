@@ -10,30 +10,85 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Game Of Life View Controller-->
         <scene sceneID="On2-h0-pAZ">
             <objects>
-                <viewController id="h2z-n0-9eA" sceneMemberID="viewController">
+                <viewController id="h2z-n0-9eA" customClass="GameOfLifeViewController" customModule="Game_of_Life" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NP4-zv-SLC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXQ-La-xLl" customClass="GridView" customModule="Game_of_Life" customModuleProvider="target">
-                                <rect key="frame" x="57" y="298" width="300" height="300"/>
+                                <rect key="frame" x="57" y="92.5" width="300" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="6eU-V2-Nhc"/>
                                     <constraint firstAttribute="width" constant="300" id="IGj-5R-rwR"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWa-w9-NuG">
+                                <rect key="frame" x="186" y="52" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="81" translatesAutoresizingMaskIntoConstraints="NO" id="CuE-Bt-IZ3">
+                                <rect key="frame" x="63" y="412.5" width="288" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-Hi-4W4">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
+                                        <state key="normal" title="Play"/>
+                                        <connections>
+                                            <action selector="playButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="AG0-bR-FQS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoY-7h-snj">
+                                        <rect key="frame" x="123" y="0.0" width="42" height="30"/>
+                                        <state key="normal" title="Pause"/>
+                                        <connections>
+                                            <action selector="pauseButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="JwG-WU-keS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSp-Ay-zQC">
+                                        <rect key="frame" x="246" y="0.0" width="42" height="30"/>
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="stopButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="CDE-oM-gKH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJy-Ep-EA4" customClass="GridView" customModule="Game_of_Life" customModuleProvider="target">
+                                <rect key="frame" x="57" y="92.5" width="300" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="uwt-qb-R3h"/>
+                                    <constraint firstAttribute="height" constant="300" id="z38-hV-1lu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nXQ-La-xLl" firstAttribute="centerY" secondItem="NP4-zv-SLC" secondAttribute="centerY" id="71F-fr-INr"/>
-                            <constraint firstItem="nXQ-La-xLl" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="zmG-Kd-syU"/>
+                            <constraint firstItem="TWa-w9-NuG" firstAttribute="top" secondItem="ZBH-Me-W7g" secondAttribute="top" constant="8" id="1BP-9l-SKH"/>
+                            <constraint firstItem="nXQ-La-xLl" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="BVU-JJ-1dD"/>
+                            <constraint firstItem="CuE-Bt-IZ3" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="Fas-Ud-oIm"/>
+                            <constraint firstItem="CuE-Bt-IZ3" firstAttribute="top" secondItem="LJy-Ep-EA4" secondAttribute="bottom" constant="20" id="Fxl-vB-meH"/>
+                            <constraint firstItem="LJy-Ep-EA4" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="JPN-6X-atD"/>
+                            <constraint firstItem="TWa-w9-NuG" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="PR7-OA-U0S"/>
+                            <constraint firstItem="nXQ-La-xLl" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="Tvb-NR-5GY"/>
+                            <constraint firstItem="CuE-Bt-IZ3" firstAttribute="top" secondItem="nXQ-La-xLl" secondAttribute="bottom" constant="20" id="qM5-My-eLa"/>
+                            <constraint firstItem="LJy-Ep-EA4" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="woL-vh-r5n"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBH-Me-W7g"/>
                     </view>
+                    <connections>
+                        <outlet property="firstGridView" destination="nXQ-La-xLl" id="qo6-k6-hCX"/>
+                        <outlet property="generationNumberLabel" destination="TWa-w9-NuG" id="MoY-6o-vxw"/>
+                        <outlet property="pauseButton" destination="CoY-7h-snj" id="llO-1i-DUN"/>
+                        <outlet property="playButton" destination="LTn-Hi-4W4" id="o8z-v4-r68"/>
+                        <outlet property="secondGridView" destination="LJy-Ep-EA4" id="Z5r-eD-n4b"/>
+                        <outlet property="stopButton" destination="sSp-Ay-zQC" id="bIZ-q6-X3e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4y-aw-1Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,7 +11,7 @@ import UIKit
 class GridView: UIView {
     
     //MARK: Private Properties
-    private let gridCellGraph = GridCellGraph.shared
+    public var gridCellGraph = GridCellGraph()
 
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -23,7 +23,6 @@ class GridView: UIView {
                 if y == 0 && x == 0 {
                     // Then put in x and y without modification so that we have a cell in the top left corner
                     let cell = GridCell(frame: CGRect(x: x, y: y, width: 10, height: 10), index: (x, y))
-                    cell.backgroundColor = .green
                     self.addSubview(cell)
                     gridCellGraph.addCellToGraph(cell: cell)
                 }
@@ -31,8 +30,7 @@ class GridView: UIView {
                 else if y == 0 {
                     // We don't modify y, but we multiply x by 10.
                     let cell = GridCell(frame: CGRect(x: x * 10, y: y, width: 10, height: 10), index: (x, y))
-                    
-                    cell.backgroundColor = .blue
+
                     self.addSubview(cell)
                     gridCellGraph.addCellToGraph(cell: cell)
 
@@ -41,7 +39,6 @@ class GridView: UIView {
                 else if x == 0 {
                     // We don't modify x, but we multiply y by 10
                     let cell = GridCell(frame: CGRect(x: x, y: y * 10, width: 10, height: 10), index: (x, y))
-                    cell.backgroundColor = .red
                     self.addSubview(cell)
                     gridCellGraph.addCellToGraph(cell: cell)
                 }
@@ -49,12 +46,17 @@ class GridView: UIView {
                 else {
                     //Multiply x by 10 and y by 10
                     let cell = GridCell(frame: CGRect(x: x * 10, y: y * 10, width: 10, height: 10), index: (x, y))
-                    cell.backgroundColor = .black
+
                     self.addSubview(cell)
                     gridCellGraph.addCellToGraph(cell: cell)
                 }
             }
         }
+    }
+    
+    //MARK: Public Methods
+    public func getGridCells() -> [GridCell] {
+        return gridCellGraph.getGridCellArray()
     }
 
 }
