@@ -14,10 +14,14 @@ class GridCell: UIView {
     private var currentState = 0 {
         willSet {
             if newValue == 0 {
-                self.backgroundColor = .white
+                DispatchQueue.main.async {
+                    self.backgroundColor = .white
+                }
             }
             else {
-                self.backgroundColor = .black
+                DispatchQueue.main.async {
+                    self.backgroundColor = .black
+                }
             }
         }
     }
