@@ -15,7 +15,7 @@ class GridCellGraph {
     // MARK: Private Properties
     private var gridCellAdjacencyList: [IndexTuple: [IndexTuple]] = [:]
     private var gridCellDictionary: [IndexTuple: GridCell] = [:]
-    // MARK: Public Properties
+    private var gridCellArray: [GridCell] = []
     // MARK: Private Methods
     private func getAdjacentIndexTuples(index:
         IndexTuple) -> [IndexTuple] {
@@ -47,6 +47,8 @@ class GridCellGraph {
         gridCellAdjacencyList[index] = getAdjacentIndexTuples(index: index)
         // Store the index into the other dictionary as key, the cell as value
         gridCellDictionary[index] = cell
+        // Append cell to gridCellArray for use in the CellAutomaton file
+        gridCellArray.append(cell)
         
     }
     public func getAdjacentIndexTuples(cell: GridCell) -> [GridCell] {
@@ -60,6 +62,9 @@ class GridCellGraph {
                 cellAdjacencyList.append(gridCellDictionary[index]!)
         }
         return cellAdjacencyList
+    }
+    public func getGridCellArray() -> [GridCell] {
+        return gridCellArray
     }
 }
 

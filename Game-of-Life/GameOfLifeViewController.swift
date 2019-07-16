@@ -13,7 +13,8 @@ class GameOfLifeViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
-    @IBOutlet weak var gridView: GridView!
+    @IBOutlet weak var firstGridView: GridView!
+    @IBOutlet weak var secondGridView: GridView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

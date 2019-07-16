@@ -16,12 +16,14 @@ class GenerationController {
         self.firstGridView = firstGridView
         self.secondGridView = secondGridView
         self.currentGeneration = firstGridView
+        self.nextGeneration = secondGridView
     }
     
     //MARK: Private Properties
     private let firstGridView: GridView
     private let secondGridView: GridView
     private let currentGeneration: GridView
+    private let nextGeneration: GridView
     private var generationNumber: Int
     
     //MARK: Public Properties
@@ -33,7 +35,7 @@ class GenerationController {
     public func getGenerationNumber() -> Int {
         return generationNumber
     }
-    public func advanceGeneration() {
+    public func advanceGeneration() -> GridView {
         generationNumber += 1
         // Advance generation algo here
     }
