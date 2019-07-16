@@ -11,7 +11,7 @@ import UIKit
 class GridView: UIView {
     
     //MARK: Private Properties
-    private let gridCellGraph = GridCellGraph.shared
+    private let gridCellGraph = GridCellGraph()
 
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -53,6 +53,11 @@ class GridView: UIView {
                 }
             }
         }
+    }
+    
+    //MARK: Public Methods
+    public func getGridCells() -> [GridCell] {
+        return gridCellGraph.getGridCellArray()
     }
 
 }

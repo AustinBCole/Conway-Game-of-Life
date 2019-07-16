@@ -9,9 +9,6 @@
 import Foundation
 
 class GridCellGraph {
-    // MARK: Singleton
-    static let shared = GridCellGraph()
-    private init() {}
     // MARK: Private Properties
     private var gridCellAdjacencyList: [IndexTuple: [IndexTuple]] = [:]
     private var gridCellDictionary: [IndexTuple: GridCell] = [:]

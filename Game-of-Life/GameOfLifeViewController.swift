@@ -16,18 +16,52 @@ class GameOfLifeViewController: UIViewController {
     @IBOutlet weak var firstGridView: GridView!
     @IBOutlet weak var secondGridView: GridView!
     
+    //MARK: Private Properties
+    private var isRunning = false
+    private var currentGridView: GridView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        secondGridView.isHidden = true
+        secondGridView.isUserInteractionEnabled = false
+        currentGridView = firstGridView
 
         // Do any additional setup after loading the view.
     }
     @IBAction func playButtonWasTapped(_ sender: Any) {
+        // Change isRunning to true
+        self.isRunning = true
+        // While is running is true
+        while self.isRunning == true {
+            // Populate next grid view
+            // Swap grid views
+            
+        }
     }
     
     @IBAction func pauseButtonWasTapped(_ sender: Any) {
+        self.isRunning = false
     }
     
     @IBAction func stopButtonWasTapped(_ sender: Any) {
+    }
+    //MARK: Private Methods
+    private func swapGridViews() {
+        guard var currentGridView = currentGridView else {return}
+        if currentGridView == firstGridView {
+            currentGridView = secondGridView
+            firstGridView.isHidden = true
+            
+        } else {
+            currentGridView = firstGridView
+            secondGridView.isHidden = true
+        }
+    }
+    private func populateNextGridView() {
+        if currentGridView == firstGridView {
+            secondGridView = firstGridView.copy() as? GridView
+            
+        }
     }
     /*
     // MARK: - Navigation

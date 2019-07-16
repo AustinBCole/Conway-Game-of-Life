@@ -11,23 +11,16 @@ import Foundation
 class CellAutomaton {
     
     //MARK: Private Properties
-    private let gridCellGraph = GridCellGraph.shared
+    private let firstGridCellGraph = GridCellGraph()
     private var isRunning = false
     
     
     //MARK: Public Methods
-    public func cellAutomaton() {
-        let gridCellArray = gridCellGraph.getGridCellArray()
-        for cell in gridCellArray {
-            if cellShouldChangeState(cell: cell) {
-                cell.toggleState()
-            }
-        }
-    }
-    public func toggleCellAutomaton() {
+    
+    public func toggleCellAutomaton(gridView: GridView) {
         if self.isRunning == false {
             self.isRunning = true
-            cellAutomaton()
+            cellAutomaton(gridView: gridView)
         } else {
             self.isRunning = false
         }
@@ -35,7 +28,7 @@ class CellAutomaton {
     //MARK: Private Methods
     private func getStateOfNeighbors(cell: GridCell) -> [Int] {
         // Get list of cell neighbors
-        let adjacencyList = gridCellGraph.getAdjacentIndexTuples(cell: cell)
+        let adjacencyList = firstGridCellGraph.getAdjacentIndexTuples(cell: cell)
         // Declare adjacent cells state array property, to store the state of adjacent arrays
         var adjacentCellsStateArray: [Int] = []
         // Check state of all cell neighbors
@@ -71,5 +64,14 @@ class CellAutomaton {
         }
         // Base case is return false
         return false
+    }
+    
+    private func cellAutomaton(gridView: GridView) {
+        let gridCellArray = gridView.getGridCells()
+        for cell in gridCellArray {
+            if cellShouldChangeState(cell: cell) {
+                cell.toggleState()
+            }
+        }
     }
 }
