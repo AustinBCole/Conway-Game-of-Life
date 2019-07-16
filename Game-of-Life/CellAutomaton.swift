@@ -11,24 +11,22 @@ import Foundation
 class CellAutomaton {
     
     //MARK: Private Properties
-    private let firstGridCellGraph = GridCellGraph()
     private var isRunning = false
     
     
     //MARK: Public Methods
-    
-    public func toggleCellAutomaton(gridView: GridView) {
-        if self.isRunning == false {
-            self.isRunning = true
-            cellAutomaton(gridView: gridView)
-        } else {
-            self.isRunning = false
+    public func cellAutomaton(gridView: GridView) {
+        let gridCellArray = gridView.getGridCells()
+        for cell in gridCellArray {
+            if cellShouldChangeState(cell: cell, gridView: gridView) {
+                cell.toggleState()
+            }
         }
     }
     //MARK: Private Methods
-    private func getStateOfNeighbors(cell: GridCell) -> [Int] {
+    private func getStateOfNeighbors(cell: GridCell, gridView: GridView) -> [Int] {
         // Get list of cell neighbors
-        let adjacencyList = firstGridCellGraph.getAdjacentIndexTuples(cell: cell)
+        let adjacencyList = gridView.gridCellGraph.getAdjacentIndexTuples(cell: cell)
         // Declare adjacent cells state array property, to store the state of adjacent arrays
         var adjacentCellsStateArray: [Int] = []
         // Check state of all cell neighbors
@@ -43,9 +41,9 @@ class CellAutomaton {
     private func checkStateOfCell(cell: GridCell) -> Int {
         return cell.getState()
     }
-    private func cellShouldChangeState(cell: GridCell) -> Bool {
+    private func cellShouldChangeState(cell: GridCell, gridView: GridView) -> Bool {
         // Get state of all neighbors
-        let neighborsState = getStateOfNeighbors(cell: cell)
+        let neighborsState = getStateOfNeighbors(cell: cell, gridView: gridView)
         // If the cell is currently dead
         if cell.getState() == 0 {
             // And if neighbor state array has 3 elements
@@ -66,12 +64,5 @@ class CellAutomaton {
         return false
     }
     
-    private func cellAutomaton(gridView: GridView) {
-        let gridCellArray = gridView.getGridCells()
-        for cell in gridCellArray {
-            if cellShouldChangeState(cell: cell) {
-                cell.toggleState()
-            }
-        }
-    }
+    
 }

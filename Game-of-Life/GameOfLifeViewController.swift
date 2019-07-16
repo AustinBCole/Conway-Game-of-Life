@@ -34,7 +34,9 @@ class GameOfLifeViewController: UIViewController {
         // While is running is true
         while self.isRunning == true {
             // Populate next grid view
+            populateNextGridView()
             // Swap grid views
+            swapGridViews()
             
         }
     }
@@ -58,9 +60,26 @@ class GameOfLifeViewController: UIViewController {
         }
     }
     private func populateNextGridView() {
+        // If current grid view is first grid view
         if currentGridView == firstGridView {
-            secondGridView = firstGridView.copy() as? GridView
-            
+            // Make pointer to graph of second grid view
+            let graphCopy = secondGridView.gridCellGraph
+            // Swap second view's graph for first view's graph
+            secondGridView.gridCellGraph = firstGridView.gridCellGraph
+            // Swap first view's graph for graph copy
+            firstGridView.gridCellGraph = graphCopy
+            // Call cell automaton method
+            CellAutomaton().cellAutomaton(gridView: secondGridView)
+        // else, do the opposite
+        } else {
+            // Make pointer to graph of second grid view
+            let graphCopy = firstGridView.gridCellGraph
+            // Swap second view's graph for first view's graph
+            firstGridView.gridCellGraph = secondGridView.gridCellGraph
+            // Swap first view's graph for graph copy
+            secondGridView.gridCellGraph = graphCopy
+            // Call cell automaton method
+            CellAutomaton().cellAutomaton(gridView: firstGridView)
         }
     }
     /*

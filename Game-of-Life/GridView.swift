@@ -11,7 +11,7 @@ import UIKit
 class GridView: UIView {
     
     //MARK: Private Properties
-    private let gridCellGraph = GridCellGraph()
+    public var gridCellGraph = GridCellGraph()
 
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -39,7 +39,6 @@ class GridView: UIView {
                 else if x == 0 {
                     // We don't modify x, but we multiply y by 10
                     let cell = GridCell(frame: CGRect(x: x, y: y * 10, width: 10, height: 10), index: (x, y))
-                    cell.backgroundColor = .red
                     self.addSubview(cell)
                     gridCellGraph.addCellToGraph(cell: cell)
                 }

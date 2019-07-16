@@ -35,7 +35,7 @@ class GenerationController {
     public func getGenerationNumber() -> Int {
         return generationNumber
     }
-    public func advanceGeneration() -> GridView {
+    public func advanceGeneration() {
         generationNumber += 1
         // Advance generation algo here
     }
