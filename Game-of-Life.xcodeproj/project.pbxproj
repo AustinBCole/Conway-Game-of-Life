@@ -15,6 +15,8 @@
 		A2B022C422DD27E200CFDBF2 /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022C322DD27E200CFDBF2 /* GridCell.swift */; };
 		A2B022C822DD310600CFDBF2 /* GridCellGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022C722DD310600CFDBF2 /* GridCellGraph.swift */; };
 		A2B022CA22DD379A00CFDBF2 /* IndexTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022C922DD379A00CFDBF2 /* IndexTuple.swift */; };
+		A2B022CC22DE2A6E00CFDBF2 /* Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022CB22DE2A6E00CFDBF2 /* Generation.swift */; };
+		A2B022CE22DE2D1B00CFDBF2 /* GameOfLifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022CD22DE2D1B00CFDBF2 /* GameOfLifeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		A2B022C322DD27E200CFDBF2 /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
 		A2B022C722DD310600CFDBF2 /* GridCellGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCellGraph.swift; sourceTree = "<group>"; };
 		A2B022C922DD379A00CFDBF2 /* IndexTuple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexTuple.swift; sourceTree = "<group>"; };
+		A2B022CB22DE2A6E00CFDBF2 /* Generation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generation.swift; sourceTree = "<group>"; };
+		A2B022CD22DE2D1B00CFDBF2 /* GameOfLifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLifeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +66,11 @@
 			children = (
 				A2B022AF22DD186600CFDBF2 /* AppDelegate.swift */,
 				A2B022B322DD186600CFDBF2 /* Main.storyboard */,
+				A2B022CD22DE2D1B00CFDBF2 /* GameOfLifeViewController.swift */,
 				A2B022C122DD1A2600CFDBF2 /* GridView.swift */,
 				A2B022C322DD27E200CFDBF2 /* GridCell.swift */,
 				A2B022C722DD310600CFDBF2 /* GridCellGraph.swift */,
+				A2B022CB22DE2A6E00CFDBF2 /* Generation.swift */,
 				A2B022C922DD379A00CFDBF2 /* IndexTuple.swift */,
 				A2B022B622DD186800CFDBF2 /* Assets.xcassets */,
 				A2B022B822DD186800CFDBF2 /* LaunchScreen.storyboard */,
@@ -144,7 +150,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B022CE22DE2D1B00CFDBF2 /* GameOfLifeViewController.swift in Sources */,
 				A2B022CA22DD379A00CFDBF2 /* IndexTuple.swift in Sources */,
+				A2B022CC22DE2A6E00CFDBF2 /* Generation.swift in Sources */,
 				A2B022C222DD1A2600CFDBF2 /* GridView.swift in Sources */,
 				A2B022B022DD186600CFDBF2 /* AppDelegate.swift in Sources */,
 				A2B022C822DD310600CFDBF2 /* GridCellGraph.swift in Sources */,
