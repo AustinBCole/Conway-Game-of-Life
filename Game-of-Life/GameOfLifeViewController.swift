@@ -17,8 +17,23 @@ class GameOfLifeViewController: UIViewController {
     @IBOutlet weak var secondGridView: GridView!
     
     //MARK: Private Properties
+    private var count = 0
+    private let cellularAutomataOpQ = OperationQueue()
     private var isRunning = false
     private var currentGridView: GridView?
+    /// Every time this variable is set, it will run swapGridViews() and populateNextGridView() so long as isRunning is true
+    private var currentGeneration: Int = 1 {
+        didSet {
+            if self.isRunning == true {
+                DispatchQueue.main.async {
+                    self.swapGridViews()
+                }
+                cellularAutomataOpQ.addOperation {
+                  self.populateNextGridView()
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +44,9 @@ class GameOfLifeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func playButtonWasTapped(_ sender: Any) {
-        // Change isRunning to true
+        // Create operation queues and operations so that this doesn't junk up the main thread
         self.isRunning = true
-        // While is running is true
-        while self.isRunning == true {
-            // Populate next grid view
-            populateNextGridView()
-            // Swap grid views
-            swapGridViews()
-            
-        }
+        cellularAutomataOpQ.addOperation(populateNextGridView)
     }
     
     @IBAction func pauseButtonWasTapped(_ sender: Any) {
@@ -59,6 +67,7 @@ class GameOfLifeViewController: UIViewController {
             secondGridView.isHidden = true
         }
     }
+    /// This method populates the next grid view and updates the current generation count. Every time current generation value is set, this method is called. It is a loop that is only broken when isRunning is equal to false.
     private func populateNextGridView() {
         // If current grid view is first grid view
         if currentGridView == firstGridView {
@@ -81,6 +90,7 @@ class GameOfLifeViewController: UIViewController {
             // Call cell automaton method
             CellAutomaton().cellAutomaton(gridView: firstGridView)
         }
+        currentGeneration += 1
     }
     /*
     // MARK: - Navigation
