@@ -9,6 +9,7 @@
 import Foundation
 
 class GenerationController {
+    //MARK: Singleton
     
     init(generationNumber: Int, firstGridView: GridView, secondGridView: GridView) {
         self.generationNumber = generationNumber
