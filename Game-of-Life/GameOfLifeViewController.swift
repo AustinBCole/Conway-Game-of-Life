@@ -47,6 +47,17 @@ class GameOfLifeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let array = currentGridView?.getGridCells()
+
+        array?[0].toggleState()
+        array?[1].toggleState()
+        array?[2].toggleState()
+        array?[3].toggleState()
+
+    }
     @IBAction func playButtonWasTapped(_ sender: Any) {
         // Create operation queues and operations so that this doesn't junk up the main thread
         self.isRunning = true
