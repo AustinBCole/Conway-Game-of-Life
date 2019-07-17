@@ -14,7 +14,11 @@ class GameOfLifeViewController: UIViewController {
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var firstGridView: GridView!
-//    @IBOutlet weak var secondGridView: GridView!
+    @IBOutlet weak var gliderCellConfigurationView: SampleCellConfigurationView!
+    @IBOutlet weak var diamondCellConfigurationView: SampleCellConfigurationView!
+    @IBOutlet weak var toadCellConfigurationView: SampleCellConfigurationView!
+    
+    //    @IBOutlet weak var secondGridView: GridView!
     
     //MARK: Private Properties
     private var count = 0
@@ -50,12 +54,7 @@ class GameOfLifeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let array = currentGridView?.getGridCells()
-
-        array?[0].toggleState()
-        array?[1].toggleState()
-        array?[2].toggleState()
-        array?[3].toggleState()
+        populateCellConfigurationViews()
 
     }
     @IBAction func playButtonWasTapped(_ sender: Any) {
@@ -81,6 +80,7 @@ class GameOfLifeViewController: UIViewController {
         currentGeneration = 1
         updateGenerationNumberLabel()
     }
+    
     //MARK: Private Methods
 //    private func swapGridViews() {
 //        guard var currentGridView = currentGridView else {return}
@@ -126,6 +126,69 @@ class GameOfLifeViewController: UIViewController {
     }
     private func updateGenerationNumberLabel() {
         generationNumberLabel.text = "Current Generation: \(currentGeneration)"
+    }
+    private func populateCellConfigurationViews() {
+        populateGliderConfigurationView()
+        populateDiamondConfigurationView()
+        populateToadConfigurationView()
+    }
+    private func populateGliderConfigurationView() {
+        // Equation for getting right index, exept for any of the indexes on the first row
+        // (y * (view.width / 10)) + x
+        // center index = (4 + 1) *(100 / 10) + (4 + 1))
+        let centerCell = gliderCellConfigurationView.getCell(index: 55)
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 5))
+        let thirdCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 6, y: 5))
+        let fourthCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 6))
+        let fifthCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 4, y: 6))
+        
+        centerCell.toggleState()
+        secondCell.toggleState()
+        thirdCell.toggleState()
+        fourthCell.toggleState()
+        fifthCell.toggleState()
+        gliderCellConfigurationView.isUserInteractionEnabled = false
+        
+    }
+    private func populateDiamondConfigurationView() {
+        // Equation for getting right index, exept for any of the indexes on the first row
+        // (y * (view.width / 10)) + x
+        // center index = (4 + 1) *(100 / 10) + (4 + 1))
+        let centerCell = diamondCellConfigurationView.getCell(index: 55)
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 5))
+        let thirdCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 4, y: 6))
+        let fourthCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 5))
+        
+        centerCell.toggleState()
+        secondCell.toggleState()
+        thirdCell.toggleState()
+        fourthCell.toggleState()
+        diamondCellConfigurationView.isUserInteractionEnabled = false
+    }
+    private func populateToadConfigurationView() {
+        // Equation for getting right index, exept for any of the indexes on the first row
+        // (y * (view.width / 10)) + x
+        // center index = (4 + 1) *(100 / 10) + (4 + 1))
+        let centerCell = toadCellConfigurationView.getCell(index: 55)
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 4))
+        let thirdCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 2, y: 4))
+        let fourthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 5))
+        let fifthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 2, y: 5))
+        let sixthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 1, y: 5))
+        
+        centerCell.toggleState()
+        secondCell.toggleState()
+        thirdCell.toggleState()
+        fourthCell.toggleState()
+        fifthCell.toggleState()
+        sixthCell.toggleState()
+        toadCellConfigurationView.isUserInteractionEnabled = false
+    }
+    private func getCellIndexByIndexTuple(x: Int, y: Int) -> Int {
+        return (y + 1) * (100 / 10) + (x + 1)
     }
     /*
     // MARK: - Navigation

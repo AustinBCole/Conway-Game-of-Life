@@ -17,8 +17,8 @@ class GridView: UIView {
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         // Double for loop. I each row and then each column
-        for y in 0...Int(bounds.maxY / 10) {
-            for x in 0...Int(bounds.maxX / 10) {
+        for y in 0...Int(self.frame.height / 10) - 1 {
+            for x in 0...Int(self.frame.width / 10) - 1 {
                 //Multiply x by 10 and y by 10
                 let cell = GridCell(frame: CGRect(x: x * 10, y: y * 10, width: 10, height: 10), index: (x, y))
                 
