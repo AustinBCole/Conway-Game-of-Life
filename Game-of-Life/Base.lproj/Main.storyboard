@@ -58,26 +58,15 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJy-Ep-EA4" customClass="GridView" customModule="Game_of_Life" customModuleProvider="target">
-                                <rect key="frame" x="57" y="92.5" width="300" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="uwt-qb-R3h"/>
-                                    <constraint firstAttribute="height" constant="300" id="z38-hV-1lu"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TWa-w9-NuG" firstAttribute="top" secondItem="ZBH-Me-W7g" secondAttribute="top" constant="8" id="1BP-9l-SKH"/>
                             <constraint firstItem="nXQ-La-xLl" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="BVU-JJ-1dD"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="Fas-Ud-oIm"/>
-                            <constraint firstItem="CuE-Bt-IZ3" firstAttribute="top" secondItem="LJy-Ep-EA4" secondAttribute="bottom" constant="20" id="Fxl-vB-meH"/>
-                            <constraint firstItem="LJy-Ep-EA4" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="JPN-6X-atD"/>
                             <constraint firstItem="TWa-w9-NuG" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="PR7-OA-U0S"/>
                             <constraint firstItem="nXQ-La-xLl" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="Tvb-NR-5GY"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="top" secondItem="nXQ-La-xLl" secondAttribute="bottom" constant="20" id="qM5-My-eLa"/>
-                            <constraint firstItem="LJy-Ep-EA4" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="woL-vh-r5n"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBH-Me-W7g"/>
                     </view>
@@ -86,7 +75,6 @@
                         <outlet property="generationNumberLabel" destination="TWa-w9-NuG" id="MoY-6o-vxw"/>
                         <outlet property="pauseButton" destination="CoY-7h-snj" id="llO-1i-DUN"/>
                         <outlet property="playButton" destination="LTn-Hi-4W4" id="o8z-v4-r68"/>
-                        <outlet property="secondGridView" destination="LJy-Ep-EA4" id="Z5r-eD-n4b"/>
                         <outlet property="stopButton" destination="sSp-Ay-zQC" id="bIZ-q6-X3e"/>
                     </connections>
                 </viewController>

@@ -14,7 +14,7 @@ class GameOfLifeViewController: UIViewController {
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var firstGridView: GridView!
-    @IBOutlet weak var secondGridView: GridView!
+//    @IBOutlet weak var secondGridView: GridView!
     
     //MARK: Private Properties
     private var count = 0
@@ -23,14 +23,14 @@ class GameOfLifeViewController: UIViewController {
     private var currentGridView: GridView?
     /// Every time this variable is set, it will run swapGridViews() and populateNextGridView() so long as isRunning is true
     private var currentGeneration: Int = 1 {
-        didSet {
-            if self.isRunning == true {
+        willSet {
+            if self.isRunning == true && newValue != 1 {
                 DispatchQueue.main.async {
                     //self.swapGridViews()
                     self.updateGenerationNumberLabel()
                 }
                 cellularAutomataOpQ.addOperation {
-                    sleep(1)
+                    sleep(UInt32(1))
                     self.repopulateGridView()
                     //self.populateNextGridView()
                 }
@@ -40,8 +40,8 @@ class GameOfLifeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        secondGridView.isHidden = true
-        secondGridView.isUserInteractionEnabled = false
+//        secondGridView.isHidden = true
+//        secondGridView.isUserInteractionEnabled = false
         currentGridView = firstGridView
         generationNumberLabel.text = "Current Generation: \(currentGeneration)"
 
@@ -50,7 +50,7 @@ class GameOfLifeViewController: UIViewController {
     @IBAction func playButtonWasTapped(_ sender: Any) {
         // Create operation queues and operations so that this doesn't junk up the main thread
         self.isRunning = true
-        cellularAutomataOpQ.addOperation(populateNextGridView)
+        cellularAutomataOpQ.addOperation(repopulateGridView)
     }
     
     @IBAction func pauseButtonWasTapped(_ sender: Any) {
@@ -58,44 +58,55 @@ class GameOfLifeViewController: UIViewController {
     }
     
     @IBAction func stopButtonWasTapped(_ sender: Any) {
+        // Set is running to false
+        self.isRunning = false
+        // Change state of all cells to dead
+        for cell in currentGridView!.getGridCells() {
+            if cell.getCurrentState() == 1 {
+                cell.toggleState()
+            }
+        }
+        // Reset the current generation number
+        currentGeneration = 1
+        updateGenerationNumberLabel()
     }
     //MARK: Private Methods
-    private func swapGridViews() {
-        guard var currentGridView = currentGridView else {return}
-        if currentGridView == firstGridView {
-            currentGridView = secondGridView
-            firstGridView.isHidden = true
-            secondGridView.isHidden = false
-            
-        } else {
-            currentGridView = firstGridView
-            secondGridView.isHidden = true
-            firstGridView.isHidden = false
-        }
-    }
+//    private func swapGridViews() {
+//        guard var currentGridView = currentGridView else {return}
+//        if currentGridView == firstGridView {
+//            currentGridView = secondGridView
+//            firstGridView.isHidden = true
+//            secondGridView.isHidden = false
+//
+//        } else {
+//            currentGridView = firstGridView
+//            secondGridView.isHidden = true
+//            firstGridView.isHidden = false
+//        }
+//    }
     /// This method populates the next grid view and updates the current generation count. Every time current generation value is set, this method is called. It is a loop that is only broken when isRunning is equal to false.
-    private func populateNextGridView() {
-        // If current grid view is first grid view
-        if currentGridView == firstGridView {
-            let gridCopy = secondGridView
-            // Swap second view for first view
-            secondGridView = firstGridView
-            // Swap first view for grid copy
-            firstGridView = gridCopy
-            // Call cell automaton method
-            CellAutomaton().cellAutomaton(gridView: secondGridView)
-        // else, do the opposite
-        } else {
-            let gridCopy = firstGridView
-            // Swap first view for second view
-            firstGridView = secondGridView
-            // Swap second view for grid copy
-            secondGridView = gridCopy
-            // Call cell automaton method
-            CellAutomaton().cellAutomaton(gridView: firstGridView)
-        }
-        currentGeneration += 1
-    }
+//    private func populateNextGridView() {
+//        // If current grid view is first grid view
+//        if currentGridView == firstGridView {
+//            let gridCopy = secondGridView
+//            // Swap second view for first view
+//            secondGridView = firstGridView
+//            // Swap first view for grid copy
+//            firstGridView = gridCopy
+//            // Call cell automaton method
+//            CellAutomaton().cellAutomaton(gridView: secondGridView)
+//        // else, do the opposite
+//        } else {
+//            let gridCopy = firstGridView
+//            // Swap first view for second view
+//            firstGridView = secondGridView
+//            // Swap second view for grid copy
+//            secondGridView = gridCopy
+//            // Call cell automaton method
+//            CellAutomaton().cellAutomaton(gridView: firstGridView)
+//        }
+//        currentGeneration += 1
+//    }
     /// This method repopulates the current grid instead of using double buffering. It also increases the current generation count by 1.
     private func repopulateGridView() {
         guard let currentGridView = currentGridView else {return}

@@ -27,6 +27,19 @@ class CellAutomaton {
             }
         }
     }
+    public func refreshCellAutomaton(gridView: GridView) {
+        // Get cells from gridView
+        let gridCellArray = gridView.getGridCells()
+        // Loop through each cell
+        for cell in gridCellArray {
+            // If cell state is 1, toggle it
+            if cell.getCurrentState() == 1 {
+                cell.toggleState()
+                // And set prvious state to 0 as well
+                cell.setPreviousState(value: 0)
+            }
+        }
+    }
     //MARK: Private Methods
     private func getStateOfNeighbors(cell: GridCell, gridView: GridView) -> [Int] {
         // Get list of cell neighbors
