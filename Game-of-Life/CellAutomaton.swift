@@ -47,13 +47,13 @@ class CellAutomaton {
         let neighborsState = getStateOfNeighbors(cell: cell, gridView: gridView)
         // If the cell is currently dead
         if cell.getState() == 0 {
-            // And if neighbor state array has more than or less than 3 elements
-            if neighborsState.count < 3 || neighborsState.count > 3 {
-                // Return false
-                return false
+            // And if neighbor state array has exactly 3 elements
+            if neighborsState.count == 3 {
+                // Return true
+                return true
             }
-            // Else return true
-            return true
+            // Else return false
+            return false
         }
         // Else if cell is alive
         else if cell.getState() == 1 {

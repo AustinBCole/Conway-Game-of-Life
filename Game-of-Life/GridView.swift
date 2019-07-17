@@ -55,13 +55,6 @@ class GridView: UIView {
             }
         }
     }
-    //MARK: Private Methods
-    @objc
-    private func tapCell(sender: GridCell) {
-        print(sender.getIndex())
-        sender.toggleState()
-    }
-    
     //MARK: Public Methods
     public func getGridCells() -> [GridCell] {
         return gridCellGraph.getGridCellArray()
