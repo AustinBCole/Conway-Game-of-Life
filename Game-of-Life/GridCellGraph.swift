@@ -10,8 +10,8 @@ import Foundation
 
 class GridCellGraph {
     // MARK: Private Properties
-    private var gridCellAdjacencyList: [IndexTuple: [IndexTuple]] = [:]
-    private var gridCellDictionary: [IndexTuple: GridCell] = [:]
+    public var gridCellAdjacencyList: [IndexTuple: [IndexTuple]] = [:]
+    public var gridCellDictionary: [IndexTuple: GridCell] = [:]
     private var gridCellArray: [GridCell] = []
     // MARK: Private Methods
     private func getAdjacentIndexTuples(index:
@@ -42,6 +42,11 @@ class GridCellGraph {
     public func addCellToGraph(cell: GridCell) {
         // Get cell index
         let index = cell.getIndex()
+        if gridCellDictionary.contains(where: { (key, value) -> Bool in
+            key.x == index.x && key.y == index.y
+        }) {
+            return
+        }
         // Cell index is key, all adjacent indexes are value
         gridCellAdjacencyList[index] = getAdjacentIndexTuples(index: index)
         // Store the index into the other dictionary as key, the cell as value
@@ -58,7 +63,7 @@ class GridCellGraph {
         // For tuple index in adjacency list
         for index in adjacencyList {
             // Append grid cell to array if index x and y are both greater than zero(else it's an invalid index), get grid cell from grid cell dictionary using tuple index as key
-            if index.x >= 0 && index.y >= 0 && index.x <= 30 && index.y <= 30 {
+            if index.x >= 0 && index.y >= 0 && index.x <= 29 && index.y <= 29 {
                     cellAdjacencyList.append(gridCellDictionary[index]!)
             }
         }

@@ -58,36 +58,58 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJy-Ep-EA4" customClass="GridView" customModule="Game_of_Life" customModuleProvider="target">
-                                <rect key="frame" x="57" y="92.5" width="300" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ywa-FV-8Vj" customClass="sam">
+                                <rect key="frame" x="57" y="462.5" width="300" height="100"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJm-y8-AES" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="Cq9-T5-oOq"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odI-vu-000" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
+                                        <rect key="frame" x="100" y="0.0" width="100" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="EG0-Ru-HRd"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EgE-Y0-8M9" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
+                                        <rect key="frame" x="200" y="0.0" width="100" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="lT6-nJ-1lY"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="uwt-qb-R3h"/>
-                                    <constraint firstAttribute="height" constant="300" id="z38-hV-1lu"/>
+                                    <constraint firstAttribute="width" constant="300" id="0oh-sZ-pCs"/>
+                                    <constraint firstAttribute="height" constant="100" id="J9v-o5-Z99"/>
                                 </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TWa-w9-NuG" firstAttribute="top" secondItem="ZBH-Me-W7g" secondAttribute="top" constant="8" id="1BP-9l-SKH"/>
                             <constraint firstItem="nXQ-La-xLl" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="BVU-JJ-1dD"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="Fas-Ud-oIm"/>
-                            <constraint firstItem="CuE-Bt-IZ3" firstAttribute="top" secondItem="LJy-Ep-EA4" secondAttribute="bottom" constant="20" id="Fxl-vB-meH"/>
-                            <constraint firstItem="LJy-Ep-EA4" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="JPN-6X-atD"/>
+                            <constraint firstItem="ywa-FV-8Vj" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="Hav-9c-rDV"/>
                             <constraint firstItem="TWa-w9-NuG" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="PR7-OA-U0S"/>
+                            <constraint firstItem="ywa-FV-8Vj" firstAttribute="top" secondItem="CuE-Bt-IZ3" secondAttribute="bottom" constant="20" id="SbA-Za-mvH"/>
                             <constraint firstItem="nXQ-La-xLl" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="Tvb-NR-5GY"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="top" secondItem="nXQ-La-xLl" secondAttribute="bottom" constant="20" id="qM5-My-eLa"/>
-                            <constraint firstItem="LJy-Ep-EA4" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="woL-vh-r5n"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBH-Me-W7g"/>
                     </view>
                     <connections>
+                        <outlet property="diamondCellConfigurationView" destination="odI-vu-000" id="BBy-l9-fFz"/>
                         <outlet property="firstGridView" destination="nXQ-La-xLl" id="qo6-k6-hCX"/>
                         <outlet property="generationNumberLabel" destination="TWa-w9-NuG" id="MoY-6o-vxw"/>
+                        <outlet property="gliderCellConfigurationView" destination="xJm-y8-AES" id="K5I-Ye-Hue"/>
                         <outlet property="pauseButton" destination="CoY-7h-snj" id="llO-1i-DUN"/>
                         <outlet property="playButton" destination="LTn-Hi-4W4" id="o8z-v4-r68"/>
-                        <outlet property="secondGridView" destination="LJy-Ep-EA4" id="Z5r-eD-n4b"/>
                         <outlet property="stopButton" destination="sSp-Ay-zQC" id="bIZ-q6-X3e"/>
+                        <outlet property="toadCellConfigurationView" destination="EgE-Y0-8M9" id="Xlh-Xj-6qp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4y-aw-1Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>

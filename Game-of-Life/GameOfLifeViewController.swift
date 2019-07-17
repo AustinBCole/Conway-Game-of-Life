@@ -8,13 +8,18 @@
 
 import UIKit
 
-class GameOfLifeViewController: UIViewController {
+class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var generationNumberLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var firstGridView: GridView!
-    @IBOutlet weak var secondGridView: GridView!
+    @IBOutlet weak var gliderCellConfigurationView: SampleCellConfigurationView!
+    @IBOutlet weak var diamondCellConfigurationView: SampleCellConfigurationView!
+    @IBOutlet weak var toadCellConfigurationView: SampleCellConfigurationView!
+    @IBOutlet weak var displayGridView: GridView!
+    
+    //    @IBOutlet weak var secondGridView: GridView!
     
     //MARK: Private Properties
     private var count = 0
@@ -23,8 +28,8 @@ class GameOfLifeViewController: UIViewController {
     private var currentGridView: GridView?
     /// Every time this variable is set, it will run swapGridViews() and populateNextGridView() so long as isRunning is true
     private var currentGeneration: Int = 1 {
-        didSet {
-            if self.isRunning == true {
+        willSet {
+            if self.isRunning == true && newValue != 1 {
                 DispatchQueue.main.async {
                     //self.swapGridViews()
                     self.updateGenerationNumberLabel()
@@ -40,17 +45,84 @@ class GameOfLifeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        secondGridView.isHidden = true
-        secondGridView.isUserInteractionEnabled = false
+//        secondGridView.isHidden = true
+//        secondGridView.isUserInteractionEnabled = false
         currentGridView = firstGridView
         generationNumberLabel.text = "Current Generation: \(currentGeneration)"
-
+        let gliderGesture = UITapGestureRecognizer(target: self, action: #selector(gliderSampleTapped(_ :)))
+        gliderGesture.delegate = self
+        
+        gliderCellConfigurationView.addGestureRecognizer(gliderGesture)
+       
+        let diamondGesture = UITapGestureRecognizer(target: self, action: #selector(diamondSampleTapped(_:)))
+        diamondGesture.delegate = self
+        diamondCellConfigurationView.addGestureRecognizer(diamondGesture)
+       
+        let toadGesture = UITapGestureRecognizer(target: self, action: #selector(toadSampleTapped(_:)))
+        toadGesture.delegate = self
+        toadCellConfigurationView.addGestureRecognizer(toadGesture)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc
+    func gliderSampleTapped(_ recognizer: UITapGestureRecognizer) {
+        let gridCells = currentGridView?.getGridCells()
+        let centerCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 14, size: 300)]
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = gridCells?[getCellIndexByIndexTuple(x: 16, y: 15, size: 300)]
+        let thirdCell = gridCells?[getCellIndexByIndexTuple(x: 17, y: 15, size: 300)]
+        let fourthCell = gridCells?[getCellIndexByIndexTuple(x: 16, y: 16, size: 300)]
+        let fifthCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 16, size: 300)]
+        
+        centerCell?.toggleState()
+        secondCell?.toggleState()
+        thirdCell?.toggleState()
+        fourthCell?.toggleState()
+        fifthCell?.toggleState()
+        
+    }
+    @objc
+    func diamondSampleTapped(_ recognizer: UITapGestureRecognizer) {
+        let gridCells = currentGridView?.getGridCells()
+        let centerCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 14, size: 300)]
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = gridCells?[getCellIndexByIndexTuple(x: 14, y: 15, size: 300)]
+        let thirdCell = gridCells?[getCellIndexByIndexTuple(x: 16, y: 15, size: 300)]
+        let fourthCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 16, size: 300)]
+        
+        centerCell?.toggleState()
+        secondCell?.toggleState()
+        thirdCell?.toggleState()
+        fourthCell?.toggleState()
+    }
+    @objc
+    func toadSampleTapped(_ sender: UITapGestureRecognizer) {
+        let gridCells = currentGridView?.getGridCells()
+        let centerCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 14, size: 300)]
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = gridCells?[getCellIndexByIndexTuple(x: 14, y: 14, size: 300)]
+        let thirdCell = gridCells?[getCellIndexByIndexTuple(x: 13, y: 14, size: 300)]
+        let fourthCell = gridCells?[getCellIndexByIndexTuple(x: 14, y: 15, size: 300)]
+        let fifthCell = gridCells?[getCellIndexByIndexTuple(x: 13, y: 15, size: 300)]
+        let sixthCell = gridCells?[getCellIndexByIndexTuple(x: 12, y: 15, size: 300)]
+        
+        centerCell?.toggleState()
+        secondCell?.toggleState()
+        thirdCell?.toggleState()
+        fourthCell?.toggleState()
+        fifthCell?.toggleState()
+        sixthCell?.toggleState()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        populateCellConfigurationViews()
+
     }
     @IBAction func playButtonWasTapped(_ sender: Any) {
         // Create operation queues and operations so that this doesn't junk up the main thread
         self.isRunning = true
-        cellularAutomataOpQ.addOperation(populateNextGridView)
+        cellularAutomataOpQ.addOperation(repopulateGridView)
     }
     
     @IBAction func pauseButtonWasTapped(_ sender: Any) {
@@ -58,53 +130,130 @@ class GameOfLifeViewController: UIViewController {
     }
     
     @IBAction func stopButtonWasTapped(_ sender: Any) {
+        // Set is running to false
+        self.isRunning = false
+        // Change state of all cells to dead
+        for cell in currentGridView!.getGridCells() {
+            if cell.getCurrentState() == 1 {
+                cell.toggleState()
+            }
+        }
+        // Reset the current generation number
+        currentGeneration = 1
+        updateGenerationNumberLabel()
     }
+    
     //MARK: Private Methods
-    private func swapGridViews() {
-        guard var currentGridView = currentGridView else {return}
-        if currentGridView == firstGridView {
-            currentGridView = secondGridView
-            firstGridView.isHidden = true
-            secondGridView.isHidden = false
-            
-        } else {
-            currentGridView = firstGridView
-            secondGridView.isHidden = true
-            firstGridView.isHidden = false
-        }
-    }
+//    private func swapGridViews() {
+//        guard var currentGridView = currentGridView else {return}
+//        if currentGridView == firstGridView {
+//            currentGridView = secondGridView
+//            firstGridView.isHidden = true
+//            secondGridView.isHidden = false
+//
+//        } else {
+//            currentGridView = firstGridView
+//            secondGridView.isHidden = true
+//            firstGridView.isHidden = false
+//        }
+//    }
     /// This method populates the next grid view and updates the current generation count. Every time current generation value is set, this method is called. It is a loop that is only broken when isRunning is equal to false.
-    private func populateNextGridView() {
-        // If current grid view is first grid view
-        if currentGridView == firstGridView {
-            let gridCopy = secondGridView
-            // Swap second view for first view
-            secondGridView = firstGridView
-            // Swap first view for grid copy
-            firstGridView = gridCopy
-            // Call cell automaton method
-            CellAutomaton().cellAutomaton(gridView: secondGridView)
-        // else, do the opposite
-        } else {
-            let gridCopy = firstGridView
-            // Swap first view for second view
-            firstGridView = secondGridView
-            // Swap second view for grid copy
-            secondGridView = gridCopy
-            // Call cell automaton method
-            CellAutomaton().cellAutomaton(gridView: firstGridView)
-        }
-        currentGeneration += 1
-    }
+//    private func populateNextGridView() {
+//        // If current grid view is first grid view
+//        if currentGridView == firstGridView {
+//            let gridCopy = secondGridView
+//            // Swap second view for first view
+//            secondGridView = firstGridView
+//            // Swap first view for grid copy
+//            firstGridView = gridCopy
+//            // Call cell automaton method
+//            CellAutomaton().cellAutomaton(gridView: secondGridView)
+//        // else, do the opposite
+//        } else {
+//            let gridCopy = firstGridView
+//            // Swap first view for second view
+//            firstGridView = secondGridView
+//            // Swap second view for grid copy
+//            secondGridView = gridCopy
+//            // Call cell automaton method
+//            CellAutomaton().cellAutomaton(gridView: firstGridView)
+//        }
+//        currentGeneration += 1
+//    }
     /// This method repopulates the current grid instead of using double buffering. It also increases the current generation count by 1.
     private func repopulateGridView() {
         guard let currentGridView = currentGridView else {return}
         CellAutomaton().cellAutomaton(gridView: currentGridView)
         currentGeneration += 1
     }
+
     private func updateGenerationNumberLabel() {
         generationNumberLabel.text = "Current Generation: \(currentGeneration)"
     }
+    private func populateCellConfigurationViews() {
+        populateGliderConfigurationView()
+        populateDiamondConfigurationView()
+        populateToadConfigurationView()
+    }
+    private func populateGliderConfigurationView() {
+        // Equation for getting right index, exept for any of the indexes on the first row
+        // (y * (view.width / 10)) + x
+        // center index = (4 + 1) *(100 / 10) + (4 + 1))
+        let centerCell = gliderCellConfigurationView.getCell(index: 55)
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 5, size: 100))
+        let thirdCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 6, y: 5, size: 100))
+        let fourthCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 6, size: 100))
+        let fifthCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 4, y: 6, size: 100))
+        
+        centerCell.toggleState()
+        secondCell.toggleState()
+        thirdCell.toggleState()
+        fourthCell.toggleState()
+        fifthCell.toggleState()
+
+        
+    }
+    private func populateDiamondConfigurationView() {
+        // Equation for getting right index, exept for any of the indexes on the first row
+        // (y * (view.width / 10)) + x
+        // center index = (4 + 1) *(100 / 10) + (4 + 1))
+        let centerCell = diamondCellConfigurationView.getCell(index: 55)
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 5, size: 100))
+        let thirdCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 4, y: 6, size: 100))
+        let fourthCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 5, size: 100))
+        
+        centerCell.toggleState()
+        secondCell.toggleState()
+        thirdCell.toggleState()
+        fourthCell.toggleState()
+
+    }
+    private func populateToadConfigurationView() {
+        // Equation for getting right index, exept for any of the indexes on the first row
+        // (y * (view.width / 10)) + x
+        // center index = (4 + 1) *(100 / 10) + (4 + 1))
+        let centerCell = toadCellConfigurationView.getCell(index: 55)
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 4, size: 100))
+        let thirdCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 2, y: 4, size: 100))
+        let fourthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 5, size: 100))
+        let fifthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 2, y: 5, size: 100))
+        let sixthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 1, y: 5, size: 100))
+        
+        centerCell.toggleState()
+        secondCell.toggleState()
+        thirdCell.toggleState()
+        fourthCell.toggleState()
+        fifthCell.toggleState()
+        sixthCell.toggleState()
+
+    }
+    private func getCellIndexByIndexTuple(x: Int, y: Int, size: Int) -> Int {
+        return (y + 1) * (size / 10) + (x + 1)
+    }
+    
     /*
     // MARK: - Navigation
 

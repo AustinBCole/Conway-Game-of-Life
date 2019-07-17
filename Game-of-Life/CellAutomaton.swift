@@ -23,7 +23,19 @@ class CellAutomaton {
             if cellShouldChangeState(cell: cell, gridView: gridView) {
                 cell.toggleState()
                 visited[cell] = true
-                print(cell.getCurrentState())
+            }
+        }
+    }
+    public func refreshCellAutomaton(gridView: GridView) {
+        // Get cells from gridView
+        let gridCellArray = gridView.getGridCells()
+        // Loop through each cell
+        for cell in gridCellArray {
+            // If cell state is 1, toggle it
+            if cell.getCurrentState() == 1 {
+                cell.toggleState()
+                // And set prvious state to 0 as well
+                cell.setPreviousState(value: 0)
             }
         }
     }
