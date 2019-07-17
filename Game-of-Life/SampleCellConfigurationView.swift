@@ -20,14 +20,12 @@ class SampleCellConfigurationView: UIView {
                 let cell = GridCell(frame: CGRect(x: x * 10, y: y * 10, width: 10, height: 10), index: (x, y))
                 cellArray.append(cell)
                 cell.layer.borderColor = UIColor.gray.cgColor
-                cell.layer.borderWidth = 1
+                cell.layer.borderWidth = 0.5
                 cell.isUserInteractionEnabled = false
                 self.addSubview(cell)
             }
             
         }
-        self.layer.borderWidth = 2
-        self.layer.borderColor = UIColor.gray.cgColor
     }
     
     public func getCell(index: Int) -> GridCell {

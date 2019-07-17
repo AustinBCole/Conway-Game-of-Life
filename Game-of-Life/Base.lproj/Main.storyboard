@@ -63,7 +63,6 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJm-y8-AES" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                        <color key="backgroundColor" red="0.73638669509999999" green="0.089961427050000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="Cq9-T5-oOq"/>
                                         </constraints>
