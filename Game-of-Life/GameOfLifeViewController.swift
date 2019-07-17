@@ -26,12 +26,13 @@ class GameOfLifeViewController: UIViewController {
         didSet {
             if self.isRunning == true {
                 DispatchQueue.main.async {
-                    self.swapGridViews()
+                    //self.swapGridViews()
                     self.updateGenerationNumberLabel()
                 }
                 cellularAutomataOpQ.addOperation {
-                    sleep(5)
-                    self.populateNextGridView()
+                    sleep(1)
+                    self.repopulateGridView()
+                    //self.populateNextGridView()
                 }
             }
         }
@@ -93,6 +94,11 @@ class GameOfLifeViewController: UIViewController {
             // Call cell automaton method
             CellAutomaton().cellAutomaton(gridView: firstGridView)
         }
+        currentGeneration += 1
+    }
+    private func repopulateGridView() {
+        guard let currentGridView = currentGridView else {return}
+        CellAutomaton().cellAutomaton(gridView: currentGridView)
         currentGeneration += 1
     }
     private func updateGenerationNumberLabel() {
