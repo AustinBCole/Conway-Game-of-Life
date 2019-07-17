@@ -27,6 +27,7 @@ class GameOfLifeViewController: UIViewController {
             if self.isRunning == true {
                 DispatchQueue.main.async {
                     self.swapGridViews()
+                    self.updateGenerationNumberLabel()
                 }
                 cellularAutomataOpQ.addOperation {
                   self.populateNextGridView()
@@ -40,6 +41,7 @@ class GameOfLifeViewController: UIViewController {
         secondGridView.isHidden = true
         secondGridView.isUserInteractionEnabled = false
         currentGridView = firstGridView
+        generationNumberLabel.text = "Current Generation: \(currentGeneration)"
 
         // Do any additional setup after loading the view.
     }
@@ -91,6 +93,9 @@ class GameOfLifeViewController: UIViewController {
             CellAutomaton().cellAutomaton(gridView: firstGridView)
         }
         currentGeneration += 1
+    }
+    private func updateGenerationNumberLabel() {
+        generationNumberLabel.text = "Current Generation: \(currentGeneration)"
     }
     /*
     // MARK: - Navigation
