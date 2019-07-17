@@ -25,6 +25,7 @@ class GridCell: UIView {
             }
         }
     }
+    private var previousState = 0
     private let index: IndexTuple
     
     init(frame: CGRect, index: (Int, Int)) {
@@ -61,8 +62,11 @@ class GridCell: UIView {
         return index
     }
     
-    public func getState() -> Int {
+    public func getCurrentState() -> Int {
         return currentState
+    }
+    public func getPreviousState() -> Int {
+        return previousState
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

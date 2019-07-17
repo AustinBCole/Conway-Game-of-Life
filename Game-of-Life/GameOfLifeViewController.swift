@@ -96,6 +96,7 @@ class GameOfLifeViewController: UIViewController {
         }
         currentGeneration += 1
     }
+    /// This method repopulates the current grid instead of using double buffering. It also increases the current generation count by 1.
     private func repopulateGridView() {
         guard let currentGridView = currentGridView else {return}
         CellAutomaton().cellAutomaton(gridView: currentGridView)
