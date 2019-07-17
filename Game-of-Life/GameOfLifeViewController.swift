@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameOfLifeViewController: UIViewController {
+class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var generationNumberLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
@@ -49,8 +49,69 @@ class GameOfLifeViewController: UIViewController {
 //        secondGridView.isUserInteractionEnabled = false
         currentGridView = firstGridView
         generationNumberLabel.text = "Current Generation: \(currentGeneration)"
-
+        let gliderGesture = UITapGestureRecognizer(target: self, action: #selector(gliderSampleTapped(_ :)))
+        gliderGesture.delegate = self
+        
+        gliderCellConfigurationView.addGestureRecognizer(gliderGesture)
+       
+        let diamondGesture = UITapGestureRecognizer(target: self, action: #selector(diamondSampleTapped(_:)))
+        diamondGesture.delegate = self
+        diamondCellConfigurationView.addGestureRecognizer(diamondGesture)
+       
+        let toadGesture = UITapGestureRecognizer(target: self, action: #selector(toadSampleTapped(_:)))
+        toadGesture.delegate = self
+        toadCellConfigurationView.addGestureRecognizer(toadGesture)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc
+    func gliderSampleTapped(_ recognizer: UITapGestureRecognizer) {
+        let gridCells = currentGridView?.getGridCells()
+        let centerCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 14, size: 300)]
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = gridCells?[getCellIndexByIndexTuple(x: 16, y: 15, size: 300)]
+        let thirdCell = gridCells?[getCellIndexByIndexTuple(x: 17, y: 15, size: 300)]
+        let fourthCell = gridCells?[getCellIndexByIndexTuple(x: 16, y: 16, size: 300)]
+        let fifthCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 16, size: 300)]
+        
+        centerCell?.toggleState()
+        secondCell?.toggleState()
+        thirdCell?.toggleState()
+        fourthCell?.toggleState()
+        fifthCell?.toggleState()
+        
+    }
+    @objc
+    func diamondSampleTapped(_ recognizer: UITapGestureRecognizer) {
+        let gridCells = currentGridView?.getGridCells()
+        let centerCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 14, size: 300)]
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = gridCells?[getCellIndexByIndexTuple(x: 14, y: 15, size: 300)]
+        let thirdCell = gridCells?[getCellIndexByIndexTuple(x: 16, y: 15, size: 300)]
+        let fourthCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 16, size: 300)]
+        
+        centerCell?.toggleState()
+        secondCell?.toggleState()
+        thirdCell?.toggleState()
+        fourthCell?.toggleState()
+    }
+    @objc
+    func toadSampleTapped(_ sender: UITapGestureRecognizer) {
+        let gridCells = currentGridView?.getGridCells()
+        let centerCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 14, size: 300)]
+        // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
+        let secondCell = gridCells?[getCellIndexByIndexTuple(x: 14, y: 14, size: 300)]
+        let thirdCell = gridCells?[getCellIndexByIndexTuple(x: 13, y: 14, size: 300)]
+        let fourthCell = gridCells?[getCellIndexByIndexTuple(x: 14, y: 15, size: 300)]
+        let fifthCell = gridCells?[getCellIndexByIndexTuple(x: 13, y: 15, size: 300)]
+        let sixthCell = gridCells?[getCellIndexByIndexTuple(x: 12, y: 15, size: 300)]
+        
+        centerCell?.toggleState()
+        secondCell?.toggleState()
+        thirdCell?.toggleState()
+        fourthCell?.toggleState()
+        fifthCell?.toggleState()
+        sixthCell?.toggleState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -140,10 +201,10 @@ class GameOfLifeViewController: UIViewController {
         // center index = (4 + 1) *(100 / 10) + (4 + 1))
         let centerCell = gliderCellConfigurationView.getCell(index: 55)
         // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
-        let secondCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 5))
-        let thirdCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 6, y: 5))
-        let fourthCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 6))
-        let fifthCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 4, y: 6))
+        let secondCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 5, size: 100))
+        let thirdCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 6, y: 5, size: 100))
+        let fourthCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 6, size: 100))
+        let fifthCell = gliderCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 4, y: 6, size: 100))
         
         centerCell.toggleState()
         secondCell.toggleState()
@@ -159,9 +220,9 @@ class GameOfLifeViewController: UIViewController {
         // center index = (4 + 1) *(100 / 10) + (4 + 1))
         let centerCell = diamondCellConfigurationView.getCell(index: 55)
         // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
-        let secondCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 5))
-        let thirdCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 4, y: 6))
-        let fourthCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 5))
+        let secondCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 5, size: 100))
+        let thirdCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 4, y: 6, size: 100))
+        let fourthCell = diamondCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 5, y: 5, size: 100))
         
         centerCell.toggleState()
         secondCell.toggleState()
@@ -175,11 +236,11 @@ class GameOfLifeViewController: UIViewController {
         // center index = (4 + 1) *(100 / 10) + (4 + 1))
         let centerCell = toadCellConfigurationView.getCell(index: 55)
         // next cell index = (5 + 1) *(100 / 10) + (5 + 1)
-        let secondCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 4))
-        let thirdCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 2, y: 4))
-        let fourthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 5))
-        let fifthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 2, y: 5))
-        let sixthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 1, y: 5))
+        let secondCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 4, size: 100))
+        let thirdCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 2, y: 4, size: 100))
+        let fourthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 3, y: 5, size: 100))
+        let fifthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 2, y: 5, size: 100))
+        let sixthCell = toadCellConfigurationView.getCell(index: getCellIndexByIndexTuple(x: 1, y: 5, size: 100))
         
         centerCell.toggleState()
         secondCell.toggleState()
@@ -189,9 +250,10 @@ class GameOfLifeViewController: UIViewController {
         sixthCell.toggleState()
 
     }
-    private func getCellIndexByIndexTuple(x: Int, y: Int) -> Int {
-        return (y + 1) * (100 / 10) + (x + 1)
+    private func getCellIndexByIndexTuple(x: Int, y: Int, size: Int) -> Int {
+        return (y + 1) * (size / 10) + (x + 1)
     }
+    
     /*
     // MARK: - Navigation
 
