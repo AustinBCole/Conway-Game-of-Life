@@ -30,7 +30,8 @@ class GameOfLifeViewController: UIViewController {
                     self.updateGenerationNumberLabel()
                 }
                 cellularAutomataOpQ.addOperation {
-                  self.populateNextGridView()
+                    sleep(5)
+                    self.populateNextGridView()
                 }
             }
         }
@@ -63,10 +64,12 @@ class GameOfLifeViewController: UIViewController {
         if currentGridView == firstGridView {
             currentGridView = secondGridView
             firstGridView.isHidden = true
+            secondGridView.isHidden = false
             
         } else {
             currentGridView = firstGridView
             secondGridView.isHidden = true
+            firstGridView.isHidden = false
         }
     }
     /// This method populates the next grid view and updates the current generation count. Every time current generation value is set, this method is called. It is a loop that is only broken when isRunning is equal to false.
@@ -74,21 +77,36 @@ class GameOfLifeViewController: UIViewController {
         // If current grid view is first grid view
         if currentGridView == firstGridView {
             // Make pointer to graph of second grid view
-            let graphCopy = secondGridView.gridCellGraph
+            //let graphCopy = secondGridView.gridCellGraph
             // Swap second view's graph for first view's graph
-            secondGridView.gridCellGraph = firstGridView.gridCellGraph
+            //secondGridView.gridCellGraph = firstGridView.gridCellGraph
             // Swap first view's graph for graph copy
-            firstGridView.gridCellGraph = graphCopy
+            //firstGridView.gridCellGraph = graphCopy
+            // Call cell automaton method
+            //CellAutomaton().cellAutomaton(gridView: secondGridView)
+            // Make pointer second grid view
+            let gridCopy = secondGridView
+            // Swap second view for first view
+            secondGridView = firstGridView
+            // Swap first view for grid copy
+            firstGridView = gridCopy
             // Call cell automaton method
             CellAutomaton().cellAutomaton(gridView: secondGridView)
         // else, do the opposite
         } else {
             // Make pointer to graph of second grid view
-            let graphCopy = firstGridView.gridCellGraph
+            //let graphCopy = firstGridView.gridCellGraph
             // Swap second view's graph for first view's graph
-            firstGridView.gridCellGraph = secondGridView.gridCellGraph
+            //firstGridView.gridCellGraph = secondGridView.gridCellGraph
             // Swap first view's graph for graph copy
-            secondGridView.gridCellGraph = graphCopy
+            //secondGridView.gridCellGraph = graphCopy
+            // Call cell automaton method
+            //CellAutomaton().cellAutomaton(gridView: firstGridView)
+            let gridCopy = firstGridView
+            // Swap first view for second view
+            firstGridView = secondGridView
+            // Swap second view for grid copy
+            secondGridView = gridCopy
             // Call cell automaton method
             CellAutomaton().cellAutomaton(gridView: firstGridView)
         }
