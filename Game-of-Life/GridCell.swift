@@ -68,6 +68,9 @@ class GridCell: UIView {
     public func getPreviousState() -> Int {
         return previousState
     }
+    public func setPreviousState(value: Int) {
+        previousState = value
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
