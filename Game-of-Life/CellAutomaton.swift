@@ -23,7 +23,6 @@ class CellAutomaton {
             if cellShouldChangeState(cell: cell, gridView: gridView) {
                 cell.toggleState()
                 visited[cell] = true
-                print(cell.getCurrentState())
             }
         }
     }

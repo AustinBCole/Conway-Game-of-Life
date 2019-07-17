@@ -63,7 +63,7 @@ class GridCellGraph {
         // For tuple index in adjacency list
         for index in adjacencyList {
             // Append grid cell to array if index x and y are both greater than zero(else it's an invalid index), get grid cell from grid cell dictionary using tuple index as key
-            if index.x >= 0 && index.y >= 0 && index.x <= 30 && index.y <= 30 {
+            if index.x >= 0 && index.y >= 0 && index.x <= 29 && index.y <= 29 {
                     cellAdjacencyList.append(gridCellDictionary[index]!)
             }
         }

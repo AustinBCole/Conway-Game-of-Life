@@ -17,6 +17,7 @@ class GameOfLifeViewController: UIViewController {
     @IBOutlet weak var gliderCellConfigurationView: SampleCellConfigurationView!
     @IBOutlet weak var diamondCellConfigurationView: SampleCellConfigurationView!
     @IBOutlet weak var toadCellConfigurationView: SampleCellConfigurationView!
+    @IBOutlet weak var displayGridView: GridView!
     
     //    @IBOutlet weak var secondGridView: GridView!
     
@@ -34,7 +35,7 @@ class GameOfLifeViewController: UIViewController {
                     self.updateGenerationNumberLabel()
                 }
                 cellularAutomataOpQ.addOperation {
-                    sleep(UInt32(1))
+                    sleep(1)
                     self.repopulateGridView()
                     //self.populateNextGridView()
                 }
@@ -124,6 +125,7 @@ class GameOfLifeViewController: UIViewController {
         CellAutomaton().cellAutomaton(gridView: currentGridView)
         currentGeneration += 1
     }
+
     private func updateGenerationNumberLabel() {
         generationNumberLabel.text = "Current Generation: \(currentGeneration)"
     }
@@ -148,7 +150,7 @@ class GameOfLifeViewController: UIViewController {
         thirdCell.toggleState()
         fourthCell.toggleState()
         fifthCell.toggleState()
-        gliderCellConfigurationView.isUserInteractionEnabled = false
+
         
     }
     private func populateDiamondConfigurationView() {
@@ -165,7 +167,7 @@ class GameOfLifeViewController: UIViewController {
         secondCell.toggleState()
         thirdCell.toggleState()
         fourthCell.toggleState()
-        diamondCellConfigurationView.isUserInteractionEnabled = false
+
     }
     private func populateToadConfigurationView() {
         // Equation for getting right index, exept for any of the indexes on the first row
@@ -185,7 +187,7 @@ class GameOfLifeViewController: UIViewController {
         fourthCell.toggleState()
         fifthCell.toggleState()
         sixthCell.toggleState()
-        toadCellConfigurationView.isUserInteractionEnabled = false
+
     }
     private func getCellIndexByIndexTuple(x: Int, y: Int) -> Int {
         return (y + 1) * (100 / 10) + (x + 1)
