@@ -76,15 +76,6 @@ class GameOfLifeViewController: UIViewController {
     private func populateNextGridView() {
         // If current grid view is first grid view
         if currentGridView == firstGridView {
-            // Make pointer to graph of second grid view
-            //let graphCopy = secondGridView.gridCellGraph
-            // Swap second view's graph for first view's graph
-            //secondGridView.gridCellGraph = firstGridView.gridCellGraph
-            // Swap first view's graph for graph copy
-            //firstGridView.gridCellGraph = graphCopy
-            // Call cell automaton method
-            //CellAutomaton().cellAutomaton(gridView: secondGridView)
-            // Make pointer second grid view
             let gridCopy = secondGridView
             // Swap second view for first view
             secondGridView = firstGridView
@@ -94,14 +85,6 @@ class GameOfLifeViewController: UIViewController {
             CellAutomaton().cellAutomaton(gridView: secondGridView)
         // else, do the opposite
         } else {
-            // Make pointer to graph of second grid view
-            //let graphCopy = firstGridView.gridCellGraph
-            // Swap second view's graph for first view's graph
-            //firstGridView.gridCellGraph = secondGridView.gridCellGraph
-            // Swap first view's graph for graph copy
-            //secondGridView.gridCellGraph = graphCopy
-            // Call cell automaton method
-            //CellAutomaton().cellAutomaton(gridView: firstGridView)
             let gridCopy = firstGridView
             // Swap first view for second view
             firstGridView = secondGridView
