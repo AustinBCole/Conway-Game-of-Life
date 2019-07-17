@@ -23,6 +23,7 @@ class GridView: UIView {
                 if y == 0 && x == 0 {
                     // Then put in x and y without modification so that we have a cell in the top left corner
                     let cell = GridCell(frame: CGRect(x: x, y: y, width: 10, height: 10), index: (x, y))
+                    
                     self.addSubview(cell)
                     gridCellGraph.addCellToGraph(cell: cell)
                 }
@@ -30,7 +31,7 @@ class GridView: UIView {
                 else if y == 0 {
                     // We don't modify y, but we multiply x by 10.
                     let cell = GridCell(frame: CGRect(x: x * 10, y: y, width: 10, height: 10), index: (x, y))
-
+                    
                     self.addSubview(cell)
                     gridCellGraph.addCellToGraph(cell: cell)
 
@@ -39,6 +40,7 @@ class GridView: UIView {
                 else if x == 0 {
                     // We don't modify x, but we multiply y by 10
                     let cell = GridCell(frame: CGRect(x: x, y: y * 10, width: 10, height: 10), index: (x, y))
+                    
                     self.addSubview(cell)
                     gridCellGraph.addCellToGraph(cell: cell)
                 }
@@ -53,7 +55,6 @@ class GridView: UIView {
             }
         }
     }
-    
     //MARK: Public Methods
     public func getGridCells() -> [GridCell] {
         return gridCellGraph.getGridCellArray()

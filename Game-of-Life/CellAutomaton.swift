@@ -12,14 +12,18 @@ class CellAutomaton {
     
     //MARK: Private Properties
     private var isRunning = false
+    private var visited: [GridCell: Bool] = [:]
     
     
     //MARK: Public Methods
     public func cellAutomaton(gridView: GridView) {
         let gridCellArray = gridView.getGridCells()
         for cell in gridCellArray {
+            cell.setPreviousState(value: cell.getCurrentState())
             if cellShouldChangeState(cell: cell, gridView: gridView) {
                 cell.toggleState()
+                visited[cell] = true
+                print(cell.getCurrentState())
             }
         }
     }
@@ -39,26 +43,35 @@ class CellAutomaton {
         return adjacentCellsStateArray
     }
     private func checkStateOfCell(cell: GridCell) -> Int {
-        return cell.getState()
+        if visited.contains(where: { (key, value) -> Bool in
+            cell == key
+        }) {
+            return cell.getPreviousState()
+        }
+        return cell.getCurrentState()
     }
     private func cellShouldChangeState(cell: GridCell, gridView: GridView) -> Bool {
         // Get state of all neighbors
         let neighborsState = getStateOfNeighbors(cell: cell, gridView: gridView)
         // If the cell is currently dead
-        if cell.getState() == 0 {
-            // And if neighbor state array has 3 elements
+        if cell.getCurrentState() == 0 {
+            // And if neighbor state array has exactly 3 elements
             if neighborsState.count == 3 {
                 // Return true
                 return true
             }
+            // Else return false
+            return false
         }
         // Else if cell is alive
-        else if cell.getState() == 1 {
+        else if cell.getCurrentState() == 1 {
             // And array has either 2 OR 3 elements
             if neighborsState.count == 2 || neighborsState.count == 3 {
-                // Return true
-                return true
+                // Return false
+                return false
             }
+            // Else return true
+            return true
         }
         // Base case is return false
         return false

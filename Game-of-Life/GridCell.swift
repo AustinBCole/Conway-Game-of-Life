@@ -14,13 +14,18 @@ class GridCell: UIView {
     private var currentState = 0 {
         willSet {
             if newValue == 0 {
-                self.backgroundColor = .white
+                DispatchQueue.main.async {
+                    self.backgroundColor = .white
+                }
             }
             else {
-                self.backgroundColor = .black
+                DispatchQueue.main.async {
+                    self.backgroundColor = .black
+                }
             }
         }
     }
+    private var previousState = 0
     private let index: IndexTuple
     
     init(frame: CGRect, index: (Int, Int)) {
@@ -57,8 +62,20 @@ class GridCell: UIView {
         return index
     }
     
-    public func getState() -> Int {
+    public func getCurrentState() -> Int {
         return currentState
+    }
+    public func getPreviousState() -> Int {
+        return previousState
+    }
+    public func setPreviousState(value: Int) {
+        previousState = value
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        toggleState()
+        
     }
 }
 

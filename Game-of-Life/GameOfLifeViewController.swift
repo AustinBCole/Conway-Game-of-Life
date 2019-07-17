@@ -26,10 +26,13 @@ class GameOfLifeViewController: UIViewController {
         didSet {
             if self.isRunning == true {
                 DispatchQueue.main.async {
-                    self.swapGridViews()
+                    //self.swapGridViews()
+                    self.updateGenerationNumberLabel()
                 }
                 cellularAutomataOpQ.addOperation {
-                  self.populateNextGridView()
+                    sleep(1)
+                    self.repopulateGridView()
+                    //self.populateNextGridView()
                 }
             }
         }
@@ -40,6 +43,7 @@ class GameOfLifeViewController: UIViewController {
         secondGridView.isHidden = true
         secondGridView.isUserInteractionEnabled = false
         currentGridView = firstGridView
+        generationNumberLabel.text = "Current Generation: \(currentGeneration)"
 
         // Do any additional setup after loading the view.
     }
@@ -61,36 +65,45 @@ class GameOfLifeViewController: UIViewController {
         if currentGridView == firstGridView {
             currentGridView = secondGridView
             firstGridView.isHidden = true
+            secondGridView.isHidden = false
             
         } else {
             currentGridView = firstGridView
             secondGridView.isHidden = true
+            firstGridView.isHidden = false
         }
     }
     /// This method populates the next grid view and updates the current generation count. Every time current generation value is set, this method is called. It is a loop that is only broken when isRunning is equal to false.
     private func populateNextGridView() {
         // If current grid view is first grid view
         if currentGridView == firstGridView {
-            // Make pointer to graph of second grid view
-            let graphCopy = secondGridView.gridCellGraph
-            // Swap second view's graph for first view's graph
-            secondGridView.gridCellGraph = firstGridView.gridCellGraph
-            // Swap first view's graph for graph copy
-            firstGridView.gridCellGraph = graphCopy
+            let gridCopy = secondGridView
+            // Swap second view for first view
+            secondGridView = firstGridView
+            // Swap first view for grid copy
+            firstGridView = gridCopy
             // Call cell automaton method
             CellAutomaton().cellAutomaton(gridView: secondGridView)
         // else, do the opposite
         } else {
-            // Make pointer to graph of second grid view
-            let graphCopy = firstGridView.gridCellGraph
-            // Swap second view's graph for first view's graph
-            firstGridView.gridCellGraph = secondGridView.gridCellGraph
-            // Swap first view's graph for graph copy
-            secondGridView.gridCellGraph = graphCopy
+            let gridCopy = firstGridView
+            // Swap first view for second view
+            firstGridView = secondGridView
+            // Swap second view for grid copy
+            secondGridView = gridCopy
             // Call cell automaton method
             CellAutomaton().cellAutomaton(gridView: firstGridView)
         }
         currentGeneration += 1
+    }
+    /// This method repopulates the current grid instead of using double buffering. It also increases the current generation count by 1.
+    private func repopulateGridView() {
+        guard let currentGridView = currentGridView else {return}
+        CellAutomaton().cellAutomaton(gridView: currentGridView)
+        currentGeneration += 1
+    }
+    private func updateGenerationNumberLabel() {
+        generationNumberLabel.text = "Current Generation: \(currentGeneration)"
     }
     /*
     // MARK: - Navigation
