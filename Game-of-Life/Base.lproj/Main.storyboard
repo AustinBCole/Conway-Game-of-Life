@@ -32,28 +32,35 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="81" translatesAutoresizingMaskIntoConstraints="NO" id="CuE-Bt-IZ3">
-                                <rect key="frame" x="63" y="412.5" width="288" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CuE-Bt-IZ3">
+                                <rect key="frame" x="57" y="412.5" width="300" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-Hi-4W4">
-                                        <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
                                         <state key="normal" title="Play"/>
                                         <connections>
                                             <action selector="playButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="AG0-bR-FQS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoY-7h-snj">
-                                        <rect key="frame" x="123" y="0.0" width="42" height="30"/>
+                                        <rect key="frame" x="80" y="0.0" width="60" height="30"/>
                                         <state key="normal" title="Pause"/>
                                         <connections>
                                             <action selector="pauseButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="JwG-WU-keS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSp-Ay-zQC">
-                                        <rect key="frame" x="246" y="0.0" width="42" height="30"/>
+                                        <rect key="frame" x="160" y="0.0" width="60" height="30"/>
                                         <state key="normal" title="Stop"/>
                                         <connections>
                                             <action selector="stopButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="CDE-oM-gKH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sF6-pp-tCq">
+                                        <rect key="frame" x="240" y="0.0" width="60" height="30"/>
+                                        <state key="normal" title="Random"/>
+                                        <connections>
+                                            <action selector="randomButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="Ea3-8J-zDQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -98,6 +105,7 @@
                             <constraint firstItem="ywa-FV-8Vj" firstAttribute="top" secondItem="CuE-Bt-IZ3" secondAttribute="bottom" constant="20" id="SbA-Za-mvH"/>
                             <constraint firstItem="nXQ-La-xLl" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="Tvb-NR-5GY"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="top" secondItem="nXQ-La-xLl" secondAttribute="bottom" constant="20" id="qM5-My-eLa"/>
+                            <constraint firstItem="CuE-Bt-IZ3" firstAttribute="width" secondItem="nXQ-La-xLl" secondAttribute="width" id="wWs-8d-6UI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBH-Me-W7g"/>
                     </view>
@@ -108,6 +116,7 @@
                         <outlet property="gliderCellConfigurationView" destination="xJm-y8-AES" id="K5I-Ye-Hue"/>
                         <outlet property="pauseButton" destination="CoY-7h-snj" id="llO-1i-DUN"/>
                         <outlet property="playButton" destination="LTn-Hi-4W4" id="o8z-v4-r68"/>
+                        <outlet property="randomButton" destination="sF6-pp-tCq" id="ReT-1E-lt8"/>
                         <outlet property="stopButton" destination="sSp-Ay-zQC" id="bIZ-q6-X3e"/>
                         <outlet property="toadCellConfigurationView" destination="EgE-Y0-8M9" id="Xlh-Xj-6qp"/>
                     </connections>

@@ -17,8 +17,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var gliderCellConfigurationView: SampleCellConfigurationView!
     @IBOutlet weak var diamondCellConfigurationView: SampleCellConfigurationView!
     @IBOutlet weak var toadCellConfigurationView: SampleCellConfigurationView!
-    @IBOutlet weak var displayGridView: GridView!
-    
+    @IBOutlet weak var randomButton: UIButton!
     //    @IBOutlet weak var secondGridView: GridView!
     
     //MARK: Private Properties
@@ -142,6 +141,10 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         currentGeneration = 1
         updateGenerationNumberLabel()
     }
+    @IBAction func randomButtonWasTapped(_ sender: Any) {
+        getRandomConfiguration()
+    }
+    
     
     //MARK: Private Methods
 //    private func swapGridViews() {
@@ -253,7 +256,23 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     private func getCellIndexByIndexTuple(x: Int, y: Int, size: Int) -> Int {
         return (y + 1) * (size / 10) + (x + 1)
     }
-    
+    private func getRandomConfiguration() {
+        let gridCells = currentGridView?.getGridCells()
+        guard let centerCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 14, size: 300)] else {return}
+        centerCell.toggleState()
+        guard let adjacentCells = currentGridView?.gridCellGraph.gridCellAdjacencyList[centerCell.getIndex()] else {return}
+        for count in 0...6 {
+            let randomIndex = Int.random(in: 0...adjacentCells.count - 1)
+            if gridCells?[getCellIndexByIndexTuple(x: adjacentCells[randomIndex].x, y: adjacentCells[randomIndex].y, size: 300)].getCurrentState() == 0 {
+                gridCells?[getCellIndexByIndexTuple(x: adjacentCells[randomIndex].x, y: adjacentCells[randomIndex].y, size: 300)].toggleState()
+            }
+            
+        }
+        
+        
+        
+        
+    }
     /*
     // MARK: - Navigation
 
