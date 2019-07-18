@@ -72,6 +72,7 @@ class GridCellGraph {
     public func getGridCellArray() -> [GridCell] {
         return gridCellArray
     }
+
 }
 
 

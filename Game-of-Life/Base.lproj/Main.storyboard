@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXQ-La-xLl" customClass="GridView" customModule="Game_of_Life" customModuleProvider="target">
-                                <rect key="frame" x="57" y="92.5" width="300" height="300"/>
+                                <rect key="frame" x="57" y="142.5" width="300" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="6eU-V2-Nhc"/>
@@ -32,34 +32,41 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="81" translatesAutoresizingMaskIntoConstraints="NO" id="CuE-Bt-IZ3">
-                                <rect key="frame" x="63" y="412.5" width="288" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CuE-Bt-IZ3">
+                                <rect key="frame" x="57" y="462.5" width="300" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-Hi-4W4">
-                                        <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
                                         <state key="normal" title="Play"/>
                                         <connections>
                                             <action selector="playButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="AG0-bR-FQS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoY-7h-snj">
-                                        <rect key="frame" x="123" y="0.0" width="42" height="30"/>
+                                        <rect key="frame" x="80" y="0.0" width="60" height="30"/>
                                         <state key="normal" title="Pause"/>
                                         <connections>
                                             <action selector="pauseButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="JwG-WU-keS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSp-Ay-zQC">
-                                        <rect key="frame" x="246" y="0.0" width="42" height="30"/>
+                                        <rect key="frame" x="160" y="0.0" width="60" height="30"/>
                                         <state key="normal" title="Stop"/>
                                         <connections>
                                             <action selector="stopButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="CDE-oM-gKH"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sF6-pp-tCq">
+                                        <rect key="frame" x="240" y="0.0" width="60" height="30"/>
+                                        <state key="normal" title="Random"/>
+                                        <connections>
+                                            <action selector="randomButtonWasTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="Ea3-8J-zDQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ywa-FV-8Vj" customClass="sam">
-                                <rect key="frame" x="57" y="462.5" width="300" height="100"/>
+                                <rect key="frame" x="57" y="512.5" width="300" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJm-y8-AES" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -87,6 +94,24 @@
                                     <constraint firstAttribute="height" constant="100" id="J9v-o5-Z99"/>
                                 </constraints>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bTz-j5-osd">
+                                <rect key="frame" x="125.5" y="92.5" width="163.5" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjL-FW-GHT">
+                                        <rect key="frame" x="0.0" y="0.0" width="63" height="30"/>
+                                        <state key="normal" title="Jump To:"/>
+                                        <connections>
+                                            <action selector="jumpToButtonTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="P19-3h-Rqg"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Generation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bCS-wd-9Kn">
+                                        <rect key="frame" x="71" y="0.0" width="92.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -94,10 +119,13 @@
                             <constraint firstItem="nXQ-La-xLl" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="BVU-JJ-1dD"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="Fas-Ud-oIm"/>
                             <constraint firstItem="ywa-FV-8Vj" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="Hav-9c-rDV"/>
+                            <constraint firstItem="bTz-j5-osd" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="NsY-Ko-LXf"/>
                             <constraint firstItem="TWa-w9-NuG" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="PR7-OA-U0S"/>
                             <constraint firstItem="ywa-FV-8Vj" firstAttribute="top" secondItem="CuE-Bt-IZ3" secondAttribute="bottom" constant="20" id="SbA-Za-mvH"/>
-                            <constraint firstItem="nXQ-La-xLl" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="Tvb-NR-5GY"/>
+                            <constraint firstItem="nXQ-La-xLl" firstAttribute="top" secondItem="bTz-j5-osd" secondAttribute="bottom" constant="20" id="p5l-2U-JV8"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="top" secondItem="nXQ-La-xLl" secondAttribute="bottom" constant="20" id="qM5-My-eLa"/>
+                            <constraint firstItem="bTz-j5-osd" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="qvN-aN-WWe"/>
+                            <constraint firstItem="CuE-Bt-IZ3" firstAttribute="width" secondItem="nXQ-La-xLl" secondAttribute="width" id="wWs-8d-6UI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBH-Me-W7g"/>
                     </view>
@@ -106,9 +134,8 @@
                         <outlet property="firstGridView" destination="nXQ-La-xLl" id="qo6-k6-hCX"/>
                         <outlet property="generationNumberLabel" destination="TWa-w9-NuG" id="MoY-6o-vxw"/>
                         <outlet property="gliderCellConfigurationView" destination="xJm-y8-AES" id="K5I-Ye-Hue"/>
-                        <outlet property="pauseButton" destination="CoY-7h-snj" id="llO-1i-DUN"/>
-                        <outlet property="playButton" destination="LTn-Hi-4W4" id="o8z-v4-r68"/>
-                        <outlet property="stopButton" destination="sSp-Ay-zQC" id="bIZ-q6-X3e"/>
+                        <outlet property="jumpToGenerationTextField" destination="bCS-wd-9Kn" id="DCW-c7-5ee"/>
+                        <outlet property="randomButton" destination="sF6-pp-tCq" id="ReT-1E-lt8"/>
                         <outlet property="toadCellConfigurationView" destination="EgE-Y0-8M9" id="Xlh-Xj-6qp"/>
                     </connections>
                 </viewController>

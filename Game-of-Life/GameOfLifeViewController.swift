@@ -10,15 +10,12 @@ import UIKit
 
 class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var generationNumberLabel: UILabel!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var pauseButton: UIButton!
-    @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var firstGridView: GridView!
     @IBOutlet weak var gliderCellConfigurationView: SampleCellConfigurationView!
     @IBOutlet weak var diamondCellConfigurationView: SampleCellConfigurationView!
     @IBOutlet weak var toadCellConfigurationView: SampleCellConfigurationView!
-    @IBOutlet weak var displayGridView: GridView!
-    
+    @IBOutlet weak var randomButton: UIButton!
+    @IBOutlet weak var jumpToGenerationTextField: UITextField!
     //    @IBOutlet weak var secondGridView: GridView!
     
     //MARK: Private Properties
@@ -142,6 +139,30 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         currentGeneration = 1
         updateGenerationNumberLabel()
     }
+    @IBAction func randomButtonWasTapped(_ sender: Any) {
+        getRandomConfiguration()
+    }
+    @IBAction func jumpToButtonTapped(_ sender: Any) {
+        guard let generationNumberText = jumpToGenerationTextField.text else {
+            cannotJumpToAlert()
+            return
+        }
+        let generationNumber = Int(generationNumberText) ?? 0
+        if generationNumber == 0 || generationNumber < currentGeneration {
+            cannotJumpToAlert()
+            return
+        }
+        currentGridView?.isHidden = true
+        generationNumberLabel.isHidden = true
+        for _ in currentGeneration...generationNumber - 1 {
+            repopulateGridView()
+        }
+        currentGridView?.isHidden = false
+        generationNumberLabel.isHidden = false
+        generationNumberLabel.text = "Current Generation: \(currentGeneration)"
+        
+    }
+    
     
     //MARK: Private Methods
 //    private func swapGridViews() {
@@ -253,7 +274,23 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     private func getCellIndexByIndexTuple(x: Int, y: Int, size: Int) -> Int {
         return (y + 1) * (size / 10) + (x + 1)
     }
-    
+    private func getRandomConfiguration() {
+        let gridCells = currentGridView?.getGridCells()
+        guard let centerCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 14, size: 300)] else {return}
+        centerCell.toggleState()
+        guard let adjacentCells = currentGridView?.gridCellGraph.gridCellAdjacencyList[centerCell.getIndex()] else {return}
+        for count in 0...6 {
+            let randomIndex = Int.random(in: 0...adjacentCells.count - 1)
+            if gridCells?[getCellIndexByIndexTuple(x: adjacentCells[randomIndex].x, y: adjacentCells[randomIndex].y, size: 300)].getCurrentState() == 0 {
+                gridCells?[getCellIndexByIndexTuple(x: adjacentCells[randomIndex].x, y: adjacentCells[randomIndex].y, size: 300)].toggleState()
+            }
+            
+        }
+    }
+    private func cannotJumpToAlert() {
+    let alert = UIAlertController(title: "Can't do that.", message: "Please enter a number that is after the current generation's number, and the simulation will jump to that generation.", preferredStyle: .alert)
+    self.present(alert, animated: true, completion: nil)
+}
     /*
     // MARK: - Navigation
 
