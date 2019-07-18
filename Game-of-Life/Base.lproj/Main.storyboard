@@ -100,6 +100,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjL-FW-GHT">
                                         <rect key="frame" x="0.0" y="0.0" width="63" height="30"/>
                                         <state key="normal" title="Jump To:"/>
+                                        <connections>
+                                            <action selector="jumpToButtonTapped:" destination="h2z-n0-9eA" eventType="touchUpInside" id="P19-3h-Rqg"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Generation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bCS-wd-9Kn">
                                         <rect key="frame" x="71" y="0.0" width="92.5" height="30"/>
@@ -131,6 +134,7 @@
                         <outlet property="firstGridView" destination="nXQ-La-xLl" id="qo6-k6-hCX"/>
                         <outlet property="generationNumberLabel" destination="TWa-w9-NuG" id="MoY-6o-vxw"/>
                         <outlet property="gliderCellConfigurationView" destination="xJm-y8-AES" id="K5I-Ye-Hue"/>
+                        <outlet property="jumpToGenerationTextField" destination="bCS-wd-9Kn" id="DCW-c7-5ee"/>
                         <outlet property="pauseButton" destination="CoY-7h-snj" id="llO-1i-DUN"/>
                         <outlet property="playButton" destination="LTn-Hi-4W4" id="o8z-v4-r68"/>
                         <outlet property="randomButton" destination="sF6-pp-tCq" id="ReT-1E-lt8"/>

@@ -10,14 +10,12 @@ import UIKit
 
 class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var generationNumberLabel: UILabel!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var pauseButton: UIButton!
-    @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var firstGridView: GridView!
     @IBOutlet weak var gliderCellConfigurationView: SampleCellConfigurationView!
     @IBOutlet weak var diamondCellConfigurationView: SampleCellConfigurationView!
     @IBOutlet weak var toadCellConfigurationView: SampleCellConfigurationView!
     @IBOutlet weak var randomButton: UIButton!
+    @IBOutlet weak var jumpToGenerationTextField: UITextField!
     //    @IBOutlet weak var secondGridView: GridView!
     
     //MARK: Private Properties
@@ -143,6 +141,8 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     @IBAction func randomButtonWasTapped(_ sender: Any) {
         getRandomConfiguration()
+    }
+    @IBAction func jumpToButtonTapped(_ sender: Any) {
     }
     
     
