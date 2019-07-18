@@ -135,10 +135,7 @@
                         <outlet property="generationNumberLabel" destination="TWa-w9-NuG" id="MoY-6o-vxw"/>
                         <outlet property="gliderCellConfigurationView" destination="xJm-y8-AES" id="K5I-Ye-Hue"/>
                         <outlet property="jumpToGenerationTextField" destination="bCS-wd-9Kn" id="DCW-c7-5ee"/>
-                        <outlet property="pauseButton" destination="CoY-7h-snj" id="llO-1i-DUN"/>
-                        <outlet property="playButton" destination="LTn-Hi-4W4" id="o8z-v4-r68"/>
                         <outlet property="randomButton" destination="sF6-pp-tCq" id="ReT-1E-lt8"/>
-                        <outlet property="stopButton" destination="sSp-Ay-zQC" id="bIZ-q6-X3e"/>
                         <outlet property="toadCellConfigurationView" destination="EgE-Y0-8M9" id="Xlh-Xj-6qp"/>
                     </connections>
                 </viewController>

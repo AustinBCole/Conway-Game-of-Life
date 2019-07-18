@@ -143,6 +143,24 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         getRandomConfiguration()
     }
     @IBAction func jumpToButtonTapped(_ sender: Any) {
+        guard let generationNumberText = jumpToGenerationTextField.text else {
+            cannotJumpToAlert()
+            return
+        }
+        let generationNumber = Int(generationNumberText) ?? 0
+        if generationNumber == 0 || generationNumber < currentGeneration {
+            cannotJumpToAlert()
+            return
+        }
+        currentGridView?.isHidden = true
+        generationNumberLabel.isHidden = true
+        for _ in currentGeneration...generationNumber - 1 {
+            repopulateGridView()
+        }
+        currentGridView?.isHidden = false
+        generationNumberLabel.isHidden = false
+        generationNumberLabel.text = "Current Generation: \(currentGeneration)"
+        
     }
     
     
@@ -268,11 +286,11 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             }
             
         }
-        
-        
-        
-        
     }
+    private func cannotJumpToAlert() {
+    let alert = UIAlertController(title: "Can't do that.", message: "Please enter a number that is after the current generation's number, and the simulation will jump to that generation.", preferredStyle: .alert)
+    self.present(alert, animated: true, completion: nil)
+}
     /*
     // MARK: - Navigation
 
