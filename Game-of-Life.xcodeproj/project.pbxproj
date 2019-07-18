@@ -19,8 +19,6 @@
 		A2B022CE22DE2D1B00CFDBF2 /* GameOfLifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022CD22DE2D1B00CFDBF2 /* GameOfLifeViewController.swift */; };
 		A2B022D022DE5B2E00CFDBF2 /* CellAutomaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022CF22DE5B2E00CFDBF2 /* CellAutomaton.swift */; };
 		A2B022D222DFBCF100CFDBF2 /* SampleCellConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022D122DFBCF100CFDBF2 /* SampleCellConfigurationView.swift */; };
-		A2B022D422E0CE1E00CFDBF2 /* LifeRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022D322E0CE1E00CFDBF2 /* LifeRulesViewController.swift */; };
-		A2B022D622E0CE2700CFDBF2 /* AboutLifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B022D522E0CE2700CFDBF2 /* AboutLifeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +36,6 @@
 		A2B022CD22DE2D1B00CFDBF2 /* GameOfLifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLifeViewController.swift; sourceTree = "<group>"; };
 		A2B022CF22DE5B2E00CFDBF2 /* CellAutomaton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAutomaton.swift; sourceTree = "<group>"; };
 		A2B022D122DFBCF100CFDBF2 /* SampleCellConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCellConfigurationView.swift; sourceTree = "<group>"; };
-		A2B022D322E0CE1E00CFDBF2 /* LifeRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeRulesViewController.swift; sourceTree = "<group>"; };
-		A2B022D522E0CE2700CFDBF2 /* AboutLifeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutLifeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +70,6 @@
 			children = (
 				A2B022AF22DD186600CFDBF2 /* AppDelegate.swift */,
 				A2B022B322DD186600CFDBF2 /* Main.storyboard */,
-				A2B022D322E0CE1E00CFDBF2 /* LifeRulesViewController.swift */,
-				A2B022D522E0CE2700CFDBF2 /* AboutLifeViewController.swift */,
 				A2B022D122DFBCF100CFDBF2 /* SampleCellConfigurationView.swift */,
 				A2B022CD22DE2D1B00CFDBF2 /* GameOfLifeViewController.swift */,
 				A2B022C122DD1A2600CFDBF2 /* GridView.swift */,
@@ -170,8 +164,6 @@
 				A2B022B022DD186600CFDBF2 /* AppDelegate.swift in Sources */,
 				A2B022C822DD310600CFDBF2 /* GridCellGraph.swift in Sources */,
 				A2B022D022DE5B2E00CFDBF2 /* CellAutomaton.swift in Sources */,
-				A2B022D422E0CE1E00CFDBF2 /* LifeRulesViewController.swift in Sources */,
-				A2B022D622E0CE2700CFDBF2 /* AboutLifeViewController.swift in Sources */,
 				A2B022C422DD27E200CFDBF2 /* GridCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
