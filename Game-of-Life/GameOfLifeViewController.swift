@@ -116,6 +116,10 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         // Create operation queues and operations so that this doesn't junk up the main thread
         self.isRunning = true
         cellularAutomataOpQ.addOperation(repopulateGridView)
+        currentGridView?.isUserInteractionEnabled = false
+        toadCellConfigurationView.isUserInteractionEnabled = false
+        diamondCellConfigurationView.isUserInteractionEnabled = false
+        gliderCellConfigurationView.isUserInteractionEnabled = false
     }
     
     @IBAction func pauseButtonWasTapped(_ sender: Any) {
@@ -134,9 +138,15 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         // Reset the current generation number
         currentGeneration = 1
         updateGenerationNumberLabel()
+        currentGridView?.isUserInteractionEnabled = true
+        toadCellConfigurationView.isUserInteractionEnabled = true
+        diamondCellConfigurationView.isUserInteractionEnabled = true
+        gliderCellConfigurationView.isUserInteractionEnabled = true
     }
     @IBAction func randomButtonWasTapped(_ sender: Any) {
-        getRandomConfiguration()
+        if isRunning == false {
+            getRandomConfiguration()
+        }
     }
     @IBAction func jumpToButtonTapped(_ sender: Any) {
         guard let generationNumberText = jumpToGenerationTextField.text else {
@@ -150,6 +160,12 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         currentGridView?.isHidden = true
         generationNumberLabel.isHidden = true
+        
+        currentGridView?.isUserInteractionEnabled = false
+        toadCellConfigurationView.isUserInteractionEnabled = false
+        diamondCellConfigurationView.isUserInteractionEnabled = false
+        gliderCellConfigurationView.isUserInteractionEnabled = false
+        
         for _ in currentGeneration...generationNumber - 1 {
             repopulateGridView()
         }
