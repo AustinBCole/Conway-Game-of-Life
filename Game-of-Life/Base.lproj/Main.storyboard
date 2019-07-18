@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h2z-n0-9eA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hJB-uy-msV">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Game Of Life View Controller-->
+        <!--Game-->
         <scene sceneID="On2-h0-pAZ">
             <objects>
                 <viewController id="h2z-n0-9eA" customClass="GameOfLifeViewController" customModule="Game_of_Life" customModuleProvider="target" sceneMemberID="viewController">
@@ -65,34 +65,62 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ywa-FV-8Vj" customClass="sam">
-                                <rect key="frame" x="57" y="512.5" width="300" height="100"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="kjB-SV-XeZ">
+                                <rect key="frame" x="57" y="529" width="300" height="127.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJm-y8-AES" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ywa-FV-8Vj" customClass="sam">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJm-y8-AES" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="Cq9-T5-oOq"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odI-vu-000" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
+                                                <rect key="frame" x="100" y="0.0" width="100" height="100"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="EG0-Ru-HRd"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EgE-Y0-8M9" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
+                                                <rect key="frame" x="200" y="0.0" width="100" height="100"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="lT6-nJ-1lY"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="Cq9-T5-oOq"/>
+                                            <constraint firstAttribute="width" constant="300" id="0oh-sZ-pCs"/>
+                                            <constraint firstAttribute="height" constant="100" id="J9v-o5-Z99"/>
                                         </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odI-vu-000" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
-                                        <rect key="frame" x="100" y="0.0" width="100" height="100"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="EG0-Ru-HRd"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EgE-Y0-8M9" customClass="SampleCellConfigurationView" customModule="Game_of_Life" customModuleProvider="target">
-                                        <rect key="frame" x="200" y="0.0" width="100" height="100"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="lT6-nJ-1lY"/>
-                                        </constraints>
-                                    </view>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="7WS-kf-56T">
+                                        <rect key="frame" x="12.5" y="107" width="275.5" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Glider" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQg-Ts-IDz">
+                                                <rect key="frame" x="0.0" y="0.0" width="68.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diamond" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJI-Rg-1yK">
+                                                <rect key="frame" x="103.5" y="0.0" width="68.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEj-6L-ZBd">
+                                                <rect key="frame" x="207" y="0.0" width="68.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="0oh-sZ-pCs"/>
-                                    <constraint firstAttribute="height" constant="100" id="J9v-o5-Z99"/>
-                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bTz-j5-osd">
                                 <rect key="frame" x="125.5" y="92.5" width="163.5" height="30"/>
@@ -112,23 +140,32 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Cell Configurations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4L1-q1-cI0">
+                                <rect key="frame" x="103.5" y="500.5" width="207.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TWa-w9-NuG" firstAttribute="top" secondItem="ZBH-Me-W7g" secondAttribute="top" constant="8" id="1BP-9l-SKH"/>
+                            <constraint firstItem="kjB-SV-XeZ" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="21E-4c-BUE"/>
                             <constraint firstItem="nXQ-La-xLl" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="BVU-JJ-1dD"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="Fas-Ud-oIm"/>
-                            <constraint firstItem="ywa-FV-8Vj" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="Hav-9c-rDV"/>
                             <constraint firstItem="bTz-j5-osd" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="NsY-Ko-LXf"/>
                             <constraint firstItem="TWa-w9-NuG" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="PR7-OA-U0S"/>
-                            <constraint firstItem="ywa-FV-8Vj" firstAttribute="top" secondItem="CuE-Bt-IZ3" secondAttribute="bottom" constant="20" id="SbA-Za-mvH"/>
+                            <constraint firstItem="4L1-q1-cI0" firstAttribute="centerX" secondItem="NP4-zv-SLC" secondAttribute="centerX" id="kZq-4M-1pw"/>
                             <constraint firstItem="nXQ-La-xLl" firstAttribute="top" secondItem="bTz-j5-osd" secondAttribute="bottom" constant="20" id="p5l-2U-JV8"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="top" secondItem="nXQ-La-xLl" secondAttribute="bottom" constant="20" id="qM5-My-eLa"/>
                             <constraint firstItem="bTz-j5-osd" firstAttribute="top" secondItem="TWa-w9-NuG" secondAttribute="bottom" constant="20" id="qvN-aN-WWe"/>
+                            <constraint firstItem="4L1-q1-cI0" firstAttribute="top" secondItem="CuE-Bt-IZ3" secondAttribute="bottom" constant="8" id="tgz-Fc-UJj"/>
                             <constraint firstItem="CuE-Bt-IZ3" firstAttribute="width" secondItem="nXQ-La-xLl" secondAttribute="width" id="wWs-8d-6UI"/>
+                            <constraint firstItem="kjB-SV-XeZ" firstAttribute="top" secondItem="4L1-q1-cI0" secondAttribute="bottom" constant="8" id="xzE-14-nT3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBH-Me-W7g"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Game" id="ljr-tq-z8g"/>
                     <connections>
                         <outlet property="diamondCellConfigurationView" destination="odI-vu-000" id="BBy-l9-fFz"/>
                         <outlet property="firstGridView" destination="nXQ-La-xLl" id="qo6-k6-hCX"/>
@@ -141,7 +178,157 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4y-aw-1Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-181" y="-53"/>
+            <point key="canvasLocation" x="728.98550724637687" y="-53.571428571428569"/>
+        </scene>
+        <!--Rules-->
+        <scene sceneID="pLn-Ao-rBT">
+            <objects>
+                <viewController id="fHx-g2-zaC" customClass="LifeRulesViewController" customModule="Game_of_Life" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vt0-di-YEn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PSe-BL-CXL">
+                                <rect key="frame" x="20" y="64" width="374" height="456"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rules for Conway's Game of LIfe:" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="098-7d-AdI">
+                                        <rect key="frame" x="0.0" y="0.0" width="251.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndb-kf-J10">
+                                        <rect key="frame" x="0.0" y="28.5" width="374" height="162.5"/>
+                                        <string key="text">The universe of the Game of Life, though usually infinite, is in this implementation a 30x30, two-dimensional orthogonal grid of square cells, each of which is one of two possible states, alive or dead. Every cell interacts with its eight neighbors, which are the cells that are horizontally, vertically or diagonally adjacent. At each step in time, the following transitions occur:</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Any live cell with fewer than two live neighbours dies, as if by underpopulation." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3G-jt-Irb">
+                                        <rect key="frame" x="0.0" y="199" width="374" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Any live cell with two or three live neighbours lives on to the next generation." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yoi-eR-Er3">
+                                        <rect key="frame" x="0.0" y="248" width="374" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Any live cell with more than three live neighbours dies, as if by overpopulation." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60t-mR-8W6">
+                                        <rect key="frame" x="0.0" y="297" width="374" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Any dead cell with three live neighbors becomes a live celll, as if by reproduction." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWG-6C-6t7">
+                                        <rect key="frame" x="0.0" y="346" width="319.5" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In this implementation of the Game of LIfe, live cells are colored black and dead cells are colored white." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="am7-qo-xcd">
+                                        <rect key="frame" x="0.0" y="395" width="358.5" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="A3G-jt-Irb" secondAttribute="trailing" id="RSt-Cv-NuW"/>
+                                    <constraint firstAttribute="trailing" secondItem="ndb-kf-J10" secondAttribute="trailing" id="T8M-jN-2Pq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Yoi-eR-Er3" secondAttribute="trailing" id="ayI-Wg-KfW"/>
+                                    <constraint firstAttribute="trailing" secondItem="60t-mR-8W6" secondAttribute="trailing" id="yjn-af-qn7"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PSe-BL-CXL" firstAttribute="leading" secondItem="kVp-uq-fCs" secondAttribute="leading" constant="20" id="VbO-uh-oaL"/>
+                            <constraint firstItem="PSe-BL-CXL" firstAttribute="top" secondItem="kVp-uq-fCs" secondAttribute="top" constant="20" id="aIw-ZM-sft"/>
+                            <constraint firstAttribute="trailing" secondItem="PSe-BL-CXL" secondAttribute="trailing" constant="20" id="upW-Jf-2ct"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kVp-uq-fCs"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Rules" id="7mc-G6-9ym"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kli-zE-Ok7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-678.26086956521749" y="669.64285714285711"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="jMn-3E-6GB">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hJB-uy-msV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cHq-7J-l6r">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="h2z-n0-9eA" kind="relationship" relationship="viewControllers" id="YKO-Rz-ggm"/>
+                        <segue destination="fHx-g2-zaC" kind="relationship" relationship="viewControllers" id="bh2-sV-LCj"/>
+                        <segue destination="j5d-i9-IT9" kind="relationship" relationship="viewControllers" id="2D6-Jf-yjc"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lhP-Ss-GmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-181.15942028985509" y="-53.571428571428569"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="7DY-3l-WOZ">
+            <objects>
+                <viewController id="j5d-i9-IT9" customClass="AboutLifeViewController" customModule="Game_of_Life" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ott-i1-XAo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sec-eo-BIQ">
+                                <rect key="frame" x="20" y="64" width="374" height="309"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Conway's Game of Life" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJZ-4A-tNp">
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ps-LV-Q6X">
+                                        <rect key="frame" x="0.0" y="28.5" width="372.5" height="61"/>
+                                        <string key="text">The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gk-31-R40">
+                                        <rect key="frame" x="0.0" y="97.5" width="374" height="142.5"/>
+                                        <string key="text">The game is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves or, for advanced players, by creating patterns with particular properites.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Game of Life is Turing Complete, meaning that it can solve any problem that a Turing Machine can solve." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xi-cj-f8f">
+                                        <rect key="frame" x="0.0" y="248" width="357.5" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sec-eo-BIQ" firstAttribute="top" secondItem="zzE-UO-kQI" secondAttribute="top" constant="20" id="EZd-Wz-7iB"/>
+                            <constraint firstAttribute="trailing" secondItem="sec-eo-BIQ" secondAttribute="trailing" constant="20" id="N6J-v6-SCE"/>
+                            <constraint firstItem="sec-eo-BIQ" firstAttribute="leading" secondItem="zzE-UO-kQI" secondAttribute="leading" constant="20" id="Uoe-nV-7ni"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zzE-UO-kQI"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="About" id="ueh-dA-VAg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bp4-BW-7jg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="311.59420289855075" y="669.64285714285711"/>
         </scene>
     </scenes>
 </document>
