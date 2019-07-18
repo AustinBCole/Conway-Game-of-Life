@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h2z-n0-9eA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hJB-uy-msV">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Game Of Life View Controller-->
+        <!--Game-->
         <scene sceneID="On2-h0-pAZ">
             <objects>
                 <viewController id="h2z-n0-9eA" customClass="GameOfLifeViewController" customModule="Game_of_Life" customModuleProvider="target" sceneMemberID="viewController">
@@ -129,6 +129,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBH-Me-W7g"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Game" id="ljr-tq-z8g"/>
                     <connections>
                         <outlet property="diamondCellConfigurationView" destination="odI-vu-000" id="BBy-l9-fFz"/>
                         <outlet property="firstGridView" destination="nXQ-La-xLl" id="qo6-k6-hCX"/>
@@ -141,7 +142,116 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4y-aw-1Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-181" y="-53"/>
+            <point key="canvasLocation" x="728.98550724637687" y="-53.571428571428569"/>
+        </scene>
+        <!--Rules-->
+        <scene sceneID="pLn-Ao-rBT">
+            <objects>
+                <viewController id="fHx-g2-zaC" customClass="LifeRulesViewController" customModule="Game_of_Life" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vt0-di-YEn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PSe-BL-CXL">
+                                <rect key="frame" x="20" y="64" width="374" height="257"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rules for this implementation of Conway's Game of LIfe:" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="098-7d-AdI">
+                                        <rect key="frame" x="0.0" y="0.0" width="373.5" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rule 1: If a cell is black, then it is alive. If it is white, then it is dead." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndb-kf-J10">
+                                        <rect key="frame" x="0.0" y="49" width="374" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rule 2: If a living cell has exactly three living neightbors, it remains alive." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3G-jt-Irb">
+                                        <rect key="frame" x="0.0" y="98" width="374" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rule 3: If a dead cell has either two or three living neighbors, it becomes a living cell." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yoi-eR-Er3">
+                                        <rect key="frame" x="0.0" y="147" width="374" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rule 4: If the cell does not meed the conditions of the previous two rules, it either dies or remains dead." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60t-mR-8W6">
+                                        <rect key="frame" x="0.0" y="196" width="374" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="A3G-jt-Irb" secondAttribute="trailing" id="RSt-Cv-NuW"/>
+                                    <constraint firstAttribute="trailing" secondItem="ndb-kf-J10" secondAttribute="trailing" id="T8M-jN-2Pq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Yoi-eR-Er3" secondAttribute="trailing" id="ayI-Wg-KfW"/>
+                                    <constraint firstAttribute="trailing" secondItem="60t-mR-8W6" secondAttribute="trailing" id="yjn-af-qn7"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PSe-BL-CXL" firstAttribute="leading" secondItem="kVp-uq-fCs" secondAttribute="leading" constant="20" id="VbO-uh-oaL"/>
+                            <constraint firstItem="PSe-BL-CXL" firstAttribute="top" secondItem="kVp-uq-fCs" secondAttribute="top" constant="20" id="aIw-ZM-sft"/>
+                            <constraint firstAttribute="trailing" secondItem="PSe-BL-CXL" secondAttribute="trailing" constant="20" id="upW-Jf-2ct"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kVp-uq-fCs"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Rules" id="7mc-G6-9ym"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kli-zE-Ok7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-678.26086956521749" y="669.64285714285711"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="jMn-3E-6GB">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hJB-uy-msV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cHq-7J-l6r">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="h2z-n0-9eA" kind="relationship" relationship="viewControllers" id="YKO-Rz-ggm"/>
+                        <segue destination="fHx-g2-zaC" kind="relationship" relationship="viewControllers" id="bh2-sV-LCj"/>
+                        <segue destination="j5d-i9-IT9" kind="relationship" relationship="viewControllers" id="2D6-Jf-yjc"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lhP-Ss-GmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-181.15942028985509" y="-53.571428571428569"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="7DY-3l-WOZ">
+            <objects>
+                <viewController id="j5d-i9-IT9" customClass="AboutLifeViewController" customModule="Game_of_Life" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ott-i1-XAo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="g6D-F7-znr">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zzE-UO-kQI"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="About" id="ueh-dA-VAg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bp4-BW-7jg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="313" y="670"/>
         </scene>
     </scenes>
 </document>
