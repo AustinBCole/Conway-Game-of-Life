@@ -23,18 +23,16 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     private let cellularAutomataOpQ = OperationQueue()
     private var isRunning = false
     private var currentGridView: GridView?
-    /// Every time this variable is set, it will run swapGridViews() and populateNextGridView() so long as isRunning is true
+    /// Every time this variable is set, it will run updateGenerationNumberLabel() and repopulate() so long as isRunning is true
     private var currentGeneration: Int = 1 {
         willSet {
             if self.isRunning == true && newValue != 1 {
                 DispatchQueue.main.async {
-                    //self.swapGridViews()
                     self.updateGenerationNumberLabel()
                 }
                 cellularAutomataOpQ.addOperation {
-                    sleep(1)
+                    sleep(UInt32(1))
                     self.repopulateGridView()
-                    //self.populateNextGridView()
                 }
             }
         }
@@ -42,19 +40,17 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        secondGridView.isHidden = true
-//        secondGridView.isUserInteractionEnabled = false
         currentGridView = firstGridView
         generationNumberLabel.text = "Current Generation: \(currentGeneration)"
         let gliderGesture = UITapGestureRecognizer(target: self, action: #selector(gliderSampleTapped(_ :)))
         gliderGesture.delegate = self
         
         gliderCellConfigurationView.addGestureRecognizer(gliderGesture)
-       
+        
         let diamondGesture = UITapGestureRecognizer(target: self, action: #selector(diamondSampleTapped(_:)))
         diamondGesture.delegate = self
         diamondCellConfigurationView.addGestureRecognizer(diamondGesture)
-       
+        
         let toadGesture = UITapGestureRecognizer(target: self, action: #selector(toadSampleTapped(_:)))
         toadGesture.delegate = self
         toadCellConfigurationView.addGestureRecognizer(toadGesture)
@@ -114,7 +110,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         populateCellConfigurationViews()
-
+        
     }
     @IBAction func playButtonWasTapped(_ sender: Any) {
         // Create operation queues and operations so that this doesn't junk up the main thread
@@ -164,50 +160,14 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    //MARK: Private Methods
-//    private func swapGridViews() {
-//        guard var currentGridView = currentGridView else {return}
-//        if currentGridView == firstGridView {
-//            currentGridView = secondGridView
-//            firstGridView.isHidden = true
-//            secondGridView.isHidden = false
-//
-//        } else {
-//            currentGridView = firstGridView
-//            secondGridView.isHidden = true
-//            firstGridView.isHidden = false
-//        }
-//    }
-    /// This method populates the next grid view and updates the current generation count. Every time current generation value is set, this method is called. It is a loop that is only broken when isRunning is equal to false.
-//    private func populateNextGridView() {
-//        // If current grid view is first grid view
-//        if currentGridView == firstGridView {
-//            let gridCopy = secondGridView
-//            // Swap second view for first view
-//            secondGridView = firstGridView
-//            // Swap first view for grid copy
-//            firstGridView = gridCopy
-//            // Call cell automaton method
-//            CellAutomaton().cellAutomaton(gridView: secondGridView)
-//        // else, do the opposite
-//        } else {
-//            let gridCopy = firstGridView
-//            // Swap first view for second view
-//            firstGridView = secondGridView
-//            // Swap second view for grid copy
-//            secondGridView = gridCopy
-//            // Call cell automaton method
-//            CellAutomaton().cellAutomaton(gridView: firstGridView)
-//        }
-//        currentGeneration += 1
-//    }
+    
     /// This method repopulates the current grid instead of using double buffering. It also increases the current generation count by 1.
     private func repopulateGridView() {
         guard let currentGridView = currentGridView else {return}
         CellAutomaton().cellAutomaton(gridView: currentGridView)
         currentGeneration += 1
     }
-
+    
     private func updateGenerationNumberLabel() {
         generationNumberLabel.text = "Current Generation: \(currentGeneration)"
     }
@@ -232,7 +192,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         thirdCell.toggleState()
         fourthCell.toggleState()
         fifthCell.toggleState()
-
+        
         
     }
     private func populateDiamondConfigurationView() {
@@ -249,7 +209,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         secondCell.toggleState()
         thirdCell.toggleState()
         fourthCell.toggleState()
-
+        
     }
     private func populateToadConfigurationView() {
         // Equation for getting right index, exept for any of the indexes on the first row
@@ -269,7 +229,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         fourthCell.toggleState()
         fifthCell.toggleState()
         sixthCell.toggleState()
-
+        
     }
     private func getCellIndexByIndexTuple(x: Int, y: Int, size: Int) -> Int {
         return (y + 1) * (size / 10) + (x + 1)
@@ -279,7 +239,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         guard let centerCell = gridCells?[getCellIndexByIndexTuple(x: 15, y: 14, size: 300)] else {return}
         centerCell.toggleState()
         guard let adjacentCells = currentGridView?.gridCellGraph.gridCellAdjacencyList[centerCell.getIndex()] else {return}
-        for count in 0...6 {
+        for _ in 0...6 {
             let randomIndex = Int.random(in: 0...adjacentCells.count - 1)
             if gridCells?[getCellIndexByIndexTuple(x: adjacentCells[randomIndex].x, y: adjacentCells[randomIndex].y, size: 300)].getCurrentState() == 0 {
                 gridCells?[getCellIndexByIndexTuple(x: adjacentCells[randomIndex].x, y: adjacentCells[randomIndex].y, size: 300)].toggleState()
@@ -288,17 +248,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     private func cannotJumpToAlert() {
-    let alert = UIAlertController(title: "Can't do that.", message: "Please enter a number that is after the current generation's number, and the simulation will jump to that generation.", preferredStyle: .alert)
-    self.present(alert, animated: true, completion: nil)
-}
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let alert = UIAlertController(title: "Can't do that.", message: "Please enter a number that is after the current generation's number, and the simulation will jump to that generation.", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
     }
-    */
-
 }
