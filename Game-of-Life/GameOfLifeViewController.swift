@@ -26,7 +26,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     /// Every time this variable is set, it will run updateGenerationNumberLabel() and repopulate() so long as isRunning is true
     private var currentGeneration: Int = 1 {
         willSet {
-            if self.isRunning == true && newValue != 1 {
+            if self.isRunning == true{
                 DispatchQueue.main.async {
                     self.updateGenerationNumberLabel()
                 }
@@ -154,7 +154,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             return
         }
         let generationNumber = Int(generationNumberText) ?? 0
-        if generationNumber == 0 || generationNumber < currentGeneration {
+        if generationNumber == 0 || generationNumber <= currentGeneration {
             cannotJumpToAlert()
             return
         }
@@ -166,7 +166,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         diamondCellConfigurationView.isUserInteractionEnabled = false
         gliderCellConfigurationView.isUserInteractionEnabled = false
         
-        for _ in currentGeneration...generationNumber - 1 {
+        for _ in currentGeneration...generationNumber {
             repopulateGridView()
         }
         currentGridView?.isHidden = false
@@ -265,6 +265,7 @@ class GameOfLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     private func cannotJumpToAlert() {
         let alert = UIAlertController(title: "Can't do that.", message: "Please enter a number that is after the current generation's number, and the simulation will jump to that generation.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }

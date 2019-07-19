@@ -13,18 +13,29 @@ class CellAutomaton {
     //MARK: Private Properties
     private var isRunning = false
     private var visited: [GridCell: Bool] = [:]
+    private var affectedCells: [GridCell] = []
     
     
     //MARK: Public Methods
     public func cellAutomaton(gridView: GridView) {
-        let gridCellArray = gridView.getGridCells()
-        for cell in gridCellArray {
+        var newAffectedCells: [GridCell] = []
+        if affectedCells.count == 0 {
+            affectedCells = gridView.getGridCells()
+        }
+        for cell in affectedCells {
             cell.setPreviousState(value: cell.getCurrentState())
             if cellShouldChangeState(cell: cell, gridView: gridView) {
                 cell.toggleState()
                 visited[cell] = true
+                if cell.getCurrentState() == 1 {
+                    newAffectedCells.append(cell)
+                    if let adjacentCells = gridView.gridCellGraph.gridCellDictionary[cell.getIndex()] {
+                        newAffectedCells.append(adjacentCells)
+                    }
+                }
             }
         }
+        affectedCells = newAffectedCells
     }
     public func refreshCellAutomaton(gridView: GridView) {
         // Get cells from gridView
@@ -75,7 +86,7 @@ class CellAutomaton {
             // Else return false
             return false
         }
-        // Else if cell is alive
+            // Else if cell is alive
         else if cell.getCurrentState() == 1 {
             // And array has either 2 OR 3 elements
             if neighborsState.count == 2 || neighborsState.count == 3 {
